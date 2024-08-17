@@ -2,7 +2,7 @@ const sampleListings = [
     {
         title: "Cozy Beachfront Cottage",
         description: "Escape to this charming beachfront cottage for a relaxing getaway. Enjoy stunning ocean views and the sound of the waves.",
-        image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1516134221268-19bdc6985125?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHJlc29ydHxlbnwwfHwwfHx8MA%3D%3D",
         price: 1500,
         location: "Malibu",
         country: "United States",
@@ -10,7 +10,7 @@ const sampleListings = [
     {
         title: "Modern Loft in Downtown",
         description: "Stay in the heart of the city in this stylish loft apartment. Perfect for urban living with a touch of luxury.",
-        image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1494843805337-17790590e923?q=80&w=2558&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 1200,
         location: "New York City",
         country: "United States",
@@ -18,7 +18,7 @@ const sampleListings = [
     {
         title: "Mountain Retreat",
         description: "Relax in this beautiful mountain retreat, perfect for a quiet getaway surrounded by nature.",
-        image: "https://images.unsplash.com/photo-1521232118733-7d1e7e569cb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://plus.unsplash.com/premium_photo-1682913629540-3857602b540c?q=80&w=2841&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 2000,
         location: "Aspen",
         country: "United States",
@@ -26,7 +26,7 @@ const sampleListings = [
     {
         title: "Luxury Penthouse",
         description: "Experience the ultimate in luxury living in this stunning penthouse with breathtaking city views.",
-        image: "https://images.unsplash.com/photo-1600585154340-be6161f63606?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://plus.unsplash.com/premium_photo-1669050695617-03cfe6ec763f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 3500,
         location: "Maui",
         country: "United States",
@@ -34,7 +34,7 @@ const sampleListings = [
     {
         title: "Charming Cottage with Garden",
         description: "Relax in this charming cottage with a beautiful garden. Perfect for a peaceful getaway.",
-        image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://plus.unsplash.com/premium_photo-1687960116497-0dc41e1808a2?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 1100,
         location: "Nashville",
         country: "United States",
@@ -42,7 +42,7 @@ const sampleListings = [
     {
         title: "Elegant Apartment with Balcony",
         description: "This elegant apartment offers a spacious balcony with breathtaking city views.",
-        image: "https://images.unsplash.com/photo-1574169208507-843761748374?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 1600,
         location: "Austin",
         country: "United States",
@@ -74,7 +74,7 @@ const sampleListings = [
     {
         title: "Spacious Farmhouse with Land",
         description: "This spacious farmhouse offers plenty of room and land for outdoor activities.",
-        image: "https://images.unsplash.com/photo-1600585153752-7b1c9cf81db2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://plus.unsplash.com/premium_photo-1676517030737-5ac484676ea7?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 2800,
         location: "Texas Hill Country",
         country: "United States",
@@ -98,7 +98,7 @@ const sampleListings = [
     {
         title: "Rustic Lodge in the Forest",
         description: "This rustic lodge is nestled in the forest, offering a peaceful retreat with nature trails.",
-        image: "https://images.unsplash.com/photo-1552674605-60a0d6f076f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1529316275402-0462fcc4abd6?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 1900,
         location: "Redwood National Park",
         country: "United States",
@@ -114,7 +114,7 @@ const sampleListings = [
     {
         title: "Luxury Estate with Private Gardens",
         description: "This luxury estate features private gardens and stunning architecture, perfect for hosting events.",
-        image: "https://images.unsplash.com/photo-1572292864047-1e36b081c5a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1530125154546-09490519466d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 6000,
         location: "Hamptons",
         country: "United States",
@@ -122,7 +122,7 @@ const sampleListings = [
     {
         title: "Charming Bungalow with Ocean View",
         description: "Relax in this charming bungalow with a stunning ocean view, perfect for a peaceful getaway.",
-        image: "https://images.unsplash.com/photo-1552905296-4b282b0a4b87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://plus.unsplash.com/premium_photo-1681922761648-d5e2c3972982?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 1700,
         location: "Key West",
         country: "United States",
@@ -130,7 +130,7 @@ const sampleListings = [
     {
         title: "Urban Loft with High Ceilings",
         description: "Experience modern living in this urban loft with high ceilings and an open floor plan.",
-        image: "https://images.unsplash.com/photo-1588195532785-27a3cf5e6c99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1501698335706-90b736210a61?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 2200,
         location: "Denver",
         country: "United States",
@@ -162,7 +162,7 @@ const sampleListings = [
     {
         title: "Modern Condo with City Views",
         description: "This modern condo offers stunning city views and luxurious amenities.",
-        image: "https://images.unsplash.com/photo-1554672408-41b66b2b44c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1525596662741-e94ff9f26de1?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 2800,
         location: "Seattle",
         country: "United States",
@@ -170,7 +170,7 @@ const sampleListings = [
     {
         title: "Luxurious Villa with Private Beach",
         description: "This luxurious villa offers a private beach and stunning ocean views.",
-        image: "https://images.unsplash.com/photo-1551978127-94c09f17a6a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://plus.unsplash.com/premium_photo-1682285212027-6af0d0f70e07?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 7000,
         location: "Bora Bora",
         country: "French Polynesia",
@@ -186,7 +186,7 @@ const sampleListings = [
     {
         title: "Chic Apartment in the Heart of the City",
         description: "Stay in this chic apartment located in the heart of the city, perfect for urban living.",
-        image: "https://images.unsplash.com/photo-1587502537156-6321100e7e4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1516802206155-e05169365fc7?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 1800,
         location: "Chicago",
         country: "United States",
@@ -194,7 +194,7 @@ const sampleListings = [
     {
         title: "Secluded Cabin in the Woods",
         description: "This secluded cabin offers a peaceful retreat in the woods, perfect for nature lovers.",
-        image: "https://images.unsplash.com/photo-1507090137263-7b3ce0a61542?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://plus.unsplash.com/premium_photo-1675745329954-9639d3b74bbf?q=80&w=2335&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 1600,
         location: "Smoky Mountains",
         country: "United States",
@@ -202,7 +202,7 @@ const sampleListings = [
     {
         title: "Beach House with Oceanfront Deck",
         description: "This beautiful beach house features an oceanfront deck with stunning views.",
-        image: "https://images.unsplash.com/photo-1542315192-c5e2113d35b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1470043201067-764120126eb4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 4500,
         location: "Malibu",
         country: "United States",
@@ -210,7 +210,7 @@ const sampleListings = [
     {
         title: "Rustic Barn Conversion with Modern Amenities",
         description: "Stay in this rustic barn conversion with all the modern amenities for a comfortable stay.",
-        image: "https://images.unsplash.com/photo-1585445393425-01d1f46ff930?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+        image: "https://plus.unsplash.com/premium_photo-1687960116497-0dc41e1808a2?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: 2000,
         location: "Vermont",
         country: "United States",

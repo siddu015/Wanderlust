@@ -9,6 +9,12 @@ const ejsMate = require("ejs-mate")
 const port = 8080
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust"
 
+app.use((req, res, next) => {
+    req.responseTime = new Date(Date.now()).toString(); // Attach response time to req object
+    console.log(req.method, req.path, req.responseTime, req.hostname); // Log request details
+    next(); // Passes control to the next middleware
+});
+
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -79,7 +85,10 @@ app.delete("/listings/:id", async (req, res) => {
     console.log(deletedListing)
     res.redirect("/listings")
 })
+
 //Patch Route
 app.listen(port, () => {
     console.log(port," is running")
 })
+
+
