@@ -5,6 +5,7 @@ const path = require("path");
 const Listing = require("./models/listing.js")
 const methodOverride = require('method-override');
 const ejsMate = require("ejs-mate")
+const wrapAsync = require("./utils/wrapAsync.js")
 
 const port = 8080
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust"
