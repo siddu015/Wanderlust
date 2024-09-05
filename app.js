@@ -118,7 +118,6 @@ app.use((err, req, res, next) => {
 //Patch Route
 app.listen(port, () => {
     console.log(port," is running")
-    console.log(port," is running")
 })
 
 
