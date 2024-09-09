@@ -2,7 +2,7 @@
 <div class="container mt-3">
     <div class="row justify-content-center">
         <div class="col-10 text-center">
-            <h3 class="mb-4">Listing Details</h3>
+            <h3 class="mb-4"><%= listing.title %></h3>
         </div>
 
         <div class="col-md-6 col-lg-6">
@@ -13,8 +13,8 @@
                         alt="listing_image"
                         style="max-height: 320px; object-fit: cover;"
                 />
+                <br>
                 <div class="card-body">
-                    <h5 class="card-title font-weight-bold"><%= listing.title %></h5>
                     <p class="card-text text-muted mb-2"><%= listing.description %></p>
                     <hr>
                     <p class="card-text mb-1">
@@ -37,8 +37,25 @@
                     action="/listings/<%= listing._id %>?_method=DELETE"
                     class="d-inline"
             >
-                <button class="btn btn-outline-danger px-4">Delete</button>
+                <button class="btn btn-outline-danger px-4 ms-4">Delete</button>
             </form>
         </div>
+        <hr>
+
+        <div class="container mt-4 mb-4 p-4 bg-light rounded shadow-sm" style="max-width: 600px;">
+            <h4 class="mb-3">Leave a Review</h4>
+            <form action="/listings/<%= listing.id %>/reviews" method="POST" novalidate class="needs-validation">
+                <div class="mb-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <input type="range" class="form-range" min="1" max="5" id="rating" name="review[rating]">
+                </div>
+                <div class="mb-3">
+                    <label for="comment" class="form-label">Comments</label>
+                    <textarea class="form-control" name="review[comment]" id="comment" rows="4" placeholder="Write your comments here..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </form>
+        </div>
+
     </div>
 </div>
