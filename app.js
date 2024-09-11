@@ -39,7 +39,6 @@ async function main(){
 
 //Home Route
 app.get("/", (req, res) => {
-
     res.send("I'm groot")
 })
 
