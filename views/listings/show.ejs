@@ -13,7 +13,8 @@
                         alt="listing_image"
                         style="max-height: 320px; object-fit: cover;"
                 />
-                <br>
+                <p class="card-text text-muted mt-2">Owned by <%= listing.owner.username %></p>
+
                 <div class="card-body">
                     <p class="card-text text-muted mb-2"><%= listing.description %></p>
                     <hr>
@@ -27,57 +28,108 @@
             </div>
         </div>
 
-        <div class="col-12 text-center mt-2 mb-2">
-            <a
-                    href="/listings/<%= listing._id %>/edit"
-                    class="btn btn-outline-primary mr-3 px-4"
-            >Edit</a>
-            <form
-                    method="POST"
-                    action="/listings/<%= listing._id %>?_method=DELETE"
-                    class="d-inline"
-            >
-                <button class="btn btn-outline-danger px-4 ms-4">Delete</button>
-            </form>
-        </div>
+        <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
+            <div class="col-12 text-center mt-2 mb-2">
+                <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-primary mr-3 px-4">Edit</a>
+                <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" class="d-inline">
+                    <button class="btn btn-outline-danger px-4 ms-4">Delete</button>
+                </form>
+            </div>
+        <% } %>
         <hr>
 
-        <div class="container mt-4 mb-4 p-4 bg-light rounded shadow-sm" style="max-width: 600px;">
-            <h4 class="mb-3">Leave a Review</h4>
-            <form action="/listings/<%= listing.id %>/reviews" method="POST" novalidate class="needs-validation">
-                <div class="mb-3">
-                    <label for="rating" class="form-label">Rating</label>
-                    <input type="range" class="form-range" min="1" max="5" id="rating" name="review[rating]">
-                </div>
-                <div class="mb-3">
-                    <label for="comment" class="form-label">Comments</label>
-                    <textarea class="form-control" name="review[comment]" id="comment" rows="4" placeholder="Write your comments here..." required></textarea>
-                    <div class="invalid-feedback">
-                        Please add some valid feedback
+        <% if(currUser) { %>
+            <div class="container mt-4 mb-4 p-4 bg-light rounded shadow-sm" style="max-width: 600px;">
+                <h4 class="mb-3">Leave a Review</h4>
+                <form action="/listings/<%= listing.id %>/reviews" method="POST" novalidate class="needs-validation">
+                    <!-- Star Rating System -->
+                    <div class="rating">
+                        <input value="5" name="review[rating]" id="star5" type="radio">
+                        <label title="5" for="star5"></label>
+                        <input value="4" name="review[rating]" id="star4" type="radio">
+                        <label title="4" for="star4"></label>
+                        <input value="3" name="review[rating]" id="star3" type="radio" checked="">
+                        <label title="3" for="star3"></label>
+                        <input value="2" name="review[rating]" id="star2" type="radio">
+                        <label title="2" for="star2"></label>
+                        <input value="1" name="review[rating]" id="star1" type="radio">
+                        <label title="1" for="star1"></label>
                     </div>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
-            </form>
-        </div>
+
+                    <!-- Comment Section -->
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">Comments</label>
+                        <textarea class="form-control" name="review[comment]" id="comment" rows="4" placeholder="Write your comments here..." required></textarea>
+                        <div class="invalid-feedback">
+                            Please add some valid feedback
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </form>
+            </div>
+        <% } %>
 
         <div class="container mt-4 mb-4 p-4 bg-white rounded shadow-sm" style="max-width: 600px;">
             <h4 class="mb-3">Reviews</h4>
             <% listing.reviews.forEach(function(review) { %>
                 <div class="review-item mb-3 p-3 border rounded">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="fw-bold">Rating: <%= review.rating %>/5</span>
+                        <span class="fw-bold">Rating:
+                            <% for (let i = 1; i <= 5; i++) { %>
+                                <% if (i <= review.rating) { %>
+                                    <span style="color: #ffa723;">★</span>
+                                <% } else { %>
+                                    <span>★</span>
+                                <% } %>
+                            <% } %>
+                        </span>
                         <span class="text-muted small"><%= new Date(review.createdAt).toLocaleDateString() %></span>
                     </div>
                     <p class="mb-0"><%= review.comment %></p>
-
-                    <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" class="d-inline">
-                        <button  class="btn btn-outline-danger btn-sm mt-2">Delete</button>
-                    </form>
-
+                    <p class="text-muted small">By <%= review.author.username %></p>
+                    <% if(currUser && currUser._id.equals(review.author._id)) { %>
+                        <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" class="d-inline">
+                            <button class="btn btn-outline-danger btn-sm mt-2">Delete</button>
+                        </form>
+                    <% } %>
                 </div>
             <% }); %>
-
         </div>
-
     </div>
 </div>
+
+<style>
+    /* Star Rating CSS */
+    .rating:not(:checked) > input {
+        position: absolute;
+        appearance: none;
+    }
+
+    .rating:not(:checked) > label {
+        float: right;
+        cursor: pointer;
+        font-size: 30px;
+        color: #666;
+    }
+
+    .rating:not(:checked) > label:before {
+        content: '★';
+    }
+
+    .rating > input:checked + label:hover,
+    .rating > input:checked + label:hover ~ label,
+    .rating > input:checked ~ label:hover,
+    .rating > input:checked ~ label:hover ~ label,
+    .rating > label:hover ~ input:checked ~ label {
+        color: #e58e09;
+    }
+
+    .rating:not(:checked) > label:hover,
+    .rating:not(:checked) > label:hover ~ label {
+        color: #ff9e0b;
+    }
+
+    .rating > input:checked ~ label {
+        color: #ffa723;
+    }
+</style>
