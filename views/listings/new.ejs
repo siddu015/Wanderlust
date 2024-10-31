@@ -11,37 +11,34 @@
                 <div class="valid-feedback">Title looks good!</div>
                 <div class="invalid-feedback">Please enter a title!</div>
             </div>
+
             <div class="mb-3">
-                <label for="title" class="form-label">Description</label>
+                <label for="description" class="form-label">Description</label>
                 <textarea name="listing[description]" class="form-control" required></textarea>
                 <div class="invalid-feedback">Please enter a short description</div>
             </div>
 
-<!--            <div class="mb-3">-->
-<!--                <label for="title" class="form-label">Image URL</label>-->
-<!--                <input name="listing[image]" placeholder="Enter image URL/Link " type="text" class="form-control"/>-->
-<!--            </div>-->
 
             <div class="mb-3">
-                <label for="title" class="form-label">Upload File</label>
-                <input name="listing[image]" type="file" class="form-control"/>
+                <label for="image" class="form-label">Upload Image</label>
+                <input name="listing[image]" type="file" class="form-control" />
             </div>
 
             <div class="row">
                 <div class="mb-3 col-md-4">
-                    <label for="title" class="form-label">Price</label>
+                    <label for="price" class="form-label">Price</label>
                     <input name="listing[price]" placeholder="1200"  class="form-control" required/>
                     <div class="invalid-feedback">Price should be valid</div>
                 </div>
                 <div class="mb-3 col-md-8">
-                    <label for="title" class="form-label">Country</label>
+                    <label for="country" class="form-label">Country</label>
                     <input name="listing[country]" placeholder="India" type="text" class="form-control" required/>
                     <div class="invalid-feedback">Country name should be valid</div>
                 </div>
             </div>
 
             <div class="mb-3">
-                <label for="title" class="form-label">Location</label>
+                <label for="location" class="form-label">Location</label>
                 <input name="listing[location]" placeholder="Amaravathi, AndhraPradesh" type="text" class="form-control" required/>
                 <div class="invalid-feedback">Location should be valid</div>
             </div>
