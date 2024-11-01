@@ -1,10 +1,22 @@
 const Listing = require("../models/listing");
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapToken = process.env.MAP_TOKEN;
+const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 
 //All listings
 module.exports.index = async (req, res) => {
-    const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
+    // const allListings = await Listing.find({});
+    // res.render("listings/index.ejs", { allListings });
+
+    const category = req.query.category;
+    const allListings = category ? await Listing.find({ category }) : await Listing.find({});
+
+    if (!category) {
+        res.render("listings/index.ejs", { allListings });
+    } else {
+        res.render("listings/filter.ejs", { allListings });
+    }
 };
 
 //Form to create a new Listing
@@ -27,18 +39,28 @@ module.exports.showListing = async (req, res) => {
         req.flash("error", "Listing you requested does not exist!");
         return res.redirect("/listings");
     }
+
     res.render("listings/show.ejs", { listing });
 };
 
 // Create a new listing
 module.exports.createListing = async (req, res) => {
+    let response = await geocodingClient.forwardGeocode({
+        query: req.body.listing.location,
+        limit: 1,
+    }).send();
+
     let url = req.file.path;
     let filename = req.file.filename;
 
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
     newListing.image = { url, filename };
-    await newListing.save();
+
+    newListing.geometry = response.body.features[0].geometry;
+
+    let savedListing = await newListing.save();
+
     req.flash("success", "New Listing Created");
     res.redirect("/listings");
 };
@@ -61,7 +83,20 @@ module.exports.renderEditForm = async (req, res) => {
 // Update a listing
 module.exports.updateListing = async (req, res) => {
     const { id } = req.params;
-    let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+    let listing = await Listing.findById(id);
+
+    if (req.body.listing.location && req.body.listing.location !== listing.location) {
+        let response = await geocodingClient.forwardGeocode({
+            query: req.body.listing.location,
+            limit: 1,
+        }).send();
+
+        listing.geometry = response.body.features[0].geometry;
+        listing.location = req.body.listing.location;
+        await listing.save();
+    }
+
+    listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
 
     if(typeof req.file !== "undefined") {
         let url = req.file.path;

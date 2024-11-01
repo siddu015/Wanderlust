@@ -24,7 +24,33 @@ const listingSchema = new Schema({
     owner: {
         type: Schema.Types.ObjectId,
         ref: "User"
-    }
+    },
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'], // 'type' must be 'Point'
+            required: true
+        },
+        coordinates: {
+            type: [Number], // Array of numbers
+            required: true
+        }
+    },
+    category: {
+        type: 'string',
+        enum: [
+            'Trending',
+            'Rooms',
+            'Iconic Cities',
+            'Mountains',
+            'Castles',
+            'Amazing Pools',
+            'Free Wi-Fi',
+            'Restaurants',
+            'Romantic Getaways',
+            'Pet-Friendly',
+        ]
+    },
 });
 
 listingSchema.post("findOneAndDelete", async(listing) => {

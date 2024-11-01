@@ -1,22 +1,79 @@
 <% layout("layouts/boilerplate") %>
 <body>
-    <br>
-    <h2 class="text-center mb-4">ALL LISTINGS</h2>
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Search destinations" />
+        <button id="search-button">🔍</button>
+    </div>
+
+    <div id="filters-container">
+        <div id="filters">
+            <div class="filter" data-category="Trending">
+                <div><i class="fa-solid fa-fire"></i></div>
+                <p>Trending</p>
+            </div>
+            <div class="filter" data-category="Rooms">
+                <div><i class="fa-solid fa-bed"></i></div>
+                <p>Rooms</p>
+            </div>
+            <div class="filter" data-category="Iconic Cities">
+                <div><i class="fa-solid fa-mountain-city"></i></div>
+                <p>Iconic Cities</p>
+            </div>
+            <div class="filter" data-category="Mountains">
+                <div><i class="fa-solid fa-mountain"></i></div>
+                <p>Mountains</p>
+            </div>
+            <div class="filter" data-category="Castles">
+                <div><i class="fa-brands fa-fort-awesome"></i></div>
+                <p>Castles</p>
+            </div>
+            <div class="filter" data-category="Amazing Pools">
+                <div><i class="fa-solid fa-person-swimming"></i></div>
+                <p>Amazing Pools</p>
+            </div>
+            <div class="filter" data-category="Free Wi-Fi">
+                <div><i class="fa-solid fa-wifi"></i></div>
+                <p>Free Wi-Fi</p>
+            </div>
+            <div class="filter" data-category="Restaurants">
+                <div><i class="fa-solid fa-utensils"></i></div>
+                <p>Restaurants</p>
+            </div>
+            <div class="filter" data-category="Romantic Getaways">
+                <div><i class="fa-solid fa-heart"></i></div>
+                <p>Romantic Getaways</p>
+            </div>
+            <div class="filter" data-category="Pet-Friendly">
+                <div><i class="fa-solid fa-paw"></i></div>
+                <p>Pet-Friendly</p>
+            </div>
+        </div>
+        <div id="toggle-container">
+            <span>Display price after taxes</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="toggle-price">
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+    </div>
 
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
         <% for(let listing of allListings) { %>
-            <a href="/listings/<%= listing._id%>" class="listing-link">
+            <a href="/listings/<%= listing._id %>" class="listing-link">
                 <div class="card col">
                     <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;"/>
-                    <div class="card-img-overlay"> </div>
                     <div class="card-body">
                         <p class="card-text">
-                            <b> <%= listing.title %> </b> <br />
+                            <b><%= listing.title %></b><br />
+                            <span class="listing-price" data-original-price="<%= listing.price %>">
                             &#8377;<%= listing.price.toLocaleString("en-IN") %> / night
+                        </span>
                         </p>
                     </div>
                 </div>
             </a>
         <% } %>
     </div>
+
+    <script src="/js/filter.js"></script>
 </body>
