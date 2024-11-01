@@ -37,7 +37,7 @@ const listingSchema = new Schema({
         }
     },
     category: {
-        type: 'string',
+        type: String,
         enum: [
             'Trending',
             'Rooms',
@@ -49,7 +49,8 @@ const listingSchema = new Schema({
             'Restaurants',
             'Romantic Getaways',
             'Pet-Friendly',
-        ]
+        ],
+        required: true
     },
 });
 

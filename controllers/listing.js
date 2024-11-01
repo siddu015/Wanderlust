@@ -9,14 +9,11 @@ module.exports.index = async (req, res) => {
     const { category, location } = req.query;
     let query = {};
 
-    // Add category and location filters if they exist
     if (category) query.category = category;
     if (location) query.location = { $regex: new RegExp(location, 'i') }; // Case-insensitive location search
 
-    // Fetch listings based on the query
     const allListings = await Listing.find(query);
 
-    // Render different templates depending on whether a filter is applied
     if (!category && !location) {
         res.render("listings/index.ejs", { allListings });
     } else {
@@ -65,11 +62,13 @@ module.exports.createListing = async (req, res) => {
 
     newListing.geometry = response.body.features[0].geometry;
 
-    let savedListing = await newListing.save();
+    await newListing.save();
 
     req.flash("success", "New Listing Created");
     res.redirect("/listings");
-};
+}
+
+
 
 // Render edit form for a listing
 module.exports.renderEditForm = async (req, res) => {

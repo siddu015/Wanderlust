@@ -1,6 +1,6 @@
 <% layout("layouts/boilerplate") %>
 <div class="row">
-    <div class="col-8 offset-2">
+    <div class="col-8 offset-2 mb-4">
         <br>
         <h2>Create a new listing</h2>
         <br>
@@ -17,7 +17,6 @@
                 <textarea name="listing[description]" class="form-control" required></textarea>
                 <div class="invalid-feedback">Please enter a short description</div>
             </div>
-
 
             <div class="mb-3">
                 <label for="image" class="form-label">Upload Image</label>
@@ -42,6 +41,25 @@
                 <input name="listing[location]" placeholder="Amaravathi, AndhraPradesh" type="text" class="form-control" required/>
                 <div class="invalid-feedback">Location should be valid</div>
             </div>
+
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select name="listing[category]" class="form-select" required>
+                    <option selected disabled value="">Choose a category</option>
+                    <option value="Trending">Trending</option>
+                    <option value="Rooms">Rooms</option>
+                    <option value="Iconic Cities">Iconic Cities</option>
+                    <option value="Mountains">Mountains</option>
+                    <option value="Castles">Castles</option>
+                    <option value="Amazing Pools">Amazing Pools</option>
+                    <option value="Free Wi-Fi">Free Wi-Fi</option>
+                    <option value="Restaurants">Restaurants</option>
+                    <option value="Romantic Getaways">Romantic Getaways</option>
+                    <option value="Pet-Friendly">Pet-Friendly</option>
+                </select>
+                <div class="invalid-feedback">Please select a category</div>
+            </div>
+
             <br>
             <button class="btn btn-outline-primary mr-3 px-4">Add</button>
         </form>
