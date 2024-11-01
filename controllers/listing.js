@@ -6,18 +6,24 @@ const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 //All listings
 module.exports.index = async (req, res) => {
-    // const allListings = await Listing.find({});
-    // res.render("listings/index.ejs", { allListings });
+    const { category, location } = req.query;
+    let query = {};
 
-    const category = req.query.category;
-    const allListings = category ? await Listing.find({ category }) : await Listing.find({});
+    // Add category and location filters if they exist
+    if (category) query.category = category;
+    if (location) query.location = { $regex: new RegExp(location, 'i') }; // Case-insensitive location search
 
-    if (!category) {
+    // Fetch listings based on the query
+    const allListings = await Listing.find(query);
+
+    // Render different templates depending on whether a filter is applied
+    if (!category && !location) {
         res.render("listings/index.ejs", { allListings });
     } else {
         res.render("listings/filter.ejs", { allListings });
     }
 };
+
 
 //Form to create a new Listing
 module.exports.renderNewForm = (req, res) => {

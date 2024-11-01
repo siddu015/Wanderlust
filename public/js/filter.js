@@ -1,44 +1,59 @@
 const filters = document.querySelectorAll('.filter');
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
 
+// Add event listeners to each filter category
 filters.forEach(filter => {
     filter.addEventListener('click', () => {
         const category = filter.getAttribute('data-category');
-        filterListings(category);
+        const location = searchInput.value.trim();
+        filterListings(category, location);
     });
 });
 
-function filterListings(category) {
-    const searchParams = category ? `?category=${category}` : '';
+// Add event listener to the search button for location search
+searchButton.addEventListener('click', () => {
+    const location = searchInput.value.trim();
+    filterListings(null, location);
+});
+
+function filterListings(category, location) {
+    let searchParams = '';
+    if (category) searchParams += `?category=${category}`;
+    if (location) searchParams += `${category ? '&' : '?'}location=${encodeURIComponent(location)}`;
+
     fetch(`/listings${searchParams}`)
         .then(response => response.text())
         .then(html => {
-            document.querySelector('.row').innerHTML = html; // Assuming your listings are within a div with class 'row'
+            document.querySelector('.row').innerHTML = html;
+            initializeTogglePrice();
         })
         .catch(error => console.error('Error fetching listings:', error));
 }
 
-
-document.addEventListener('DOMContentLoaded', () => {
+// Function to initialize the price toggle functionality
+function initializeTogglePrice() {
     const togglePrice = document.getElementById('toggle-price');
 
-    togglePrice.addEventListener('change', (event) => {
-        const isChecked = event.target.checked;
-        const listingPrices = document.querySelectorAll('.listing-price');
+    if (togglePrice) {
+        togglePrice.addEventListener('change', (event) => {
+            const isChecked = event.target.checked;
+            const listingPrices = document.querySelectorAll('.listing-price');
 
-        listingPrices.forEach(priceElement => {
-            const originalPrice = parseFloat(priceElement.getAttribute('data-original-price'));
-            let newPrice;
+            listingPrices.forEach(priceElement => {
+                const originalPrice = parseFloat(priceElement.getAttribute('data-original-price'));
+                let newPrice;
 
-            if (isChecked) {
-                // Calculate price with 18% tax
-                newPrice = originalPrice * 1.18;
-            } else {
-                // Revert to the original price
-                newPrice = originalPrice;
-            }
+                if (isChecked) {
+                    newPrice = originalPrice * 1.18;
+                } else {
+                    newPrice = originalPrice;
+                }
 
-            // Update the price display
-            priceElement.innerHTML = `&#8377;${newPrice.toLocaleString("en-IN")} / night`;
+                priceElement.innerHTML = `&#8377;${newPrice.toLocaleString("en-IN")} / night`;
+            });
         });
-    });
-});
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initializeTogglePrice);
