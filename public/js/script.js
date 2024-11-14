@@ -16,3 +16,9 @@
         }, false);
     })
 })()
+
+
+document.getElementById('navbar-toggler').addEventListener('click', function() {
+    var navbar = document.getElementById('navbar');
+    navbar.classList.toggle('bg-active'); // Add/remove class when menu toggled
+});

@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
     font-family: "Plus Jakarta Sans", sans-serif !important;
     display: flex;
@@ -9,10 +10,19 @@ body {
     flex: 1;
 }
 
-/*Navbar*/
+
+/* Navbar */
 .navbar {
     height: 5rem;
     background-color: white;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.navbar-collapse.collapse.show {
+    background-color: rgba(250, 249, 249, 0.95);
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    padding: 0.2rem;
 }
 
 .fa-compass {
@@ -23,6 +33,27 @@ body {
 .nav-link {
     color: #222222 !important;
 }
+
+/* Media Queries for smaller screens */
+@media (max-width: 768px) {
+    .navbar {
+        height: 4rem;
+    }
+
+    .fa-compass {
+        font-size: 1.5rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+    }
+
+    .navbar-toggler {
+        font-size: 1.25rem;
+    }
+}
+
+
 
 /* Footer */
 .f-info-links a {
@@ -58,6 +89,30 @@ body {
     align-items: center;
 }
 
+@media (max-width: 768px) {
+    .f-info {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .f-info-socials {
+        margin-bottom: 0.5rem;
+    }
+
+    .f-info-socials i {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .f-info-links a {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+}
+
+
 
 /* Card Styling */
 .card {
@@ -92,7 +147,19 @@ body {
     background-color: white;
 }
 
-/*Show Page*/
+@media (max-width: 768px) {
+    .card-body {
+        padding: 0.5rem !important;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+/* Show Page */
 .show-img {
     height: 30vh;
 }
@@ -103,8 +170,10 @@ body {
 
 .show-card {
     padding-left: 1rem;
-
 }
+
+
+/* Search Bar Section */
 #search-container {
     display: flex;
     justify-content: center;
@@ -128,23 +197,28 @@ body {
     margin-left: 0.5rem; /* Space between search input and button */
 }
 
+
+/* filter section */
 #filters-container {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 #filters {
     display: flex;
-    overflow-x: auto; /* Allow horizontal scrolling */
-    white-space: nowrap; /* Prevent wrapping of filters */
-    padding: 0.5rem 1rem; /* Added padding */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer and Edge */
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 98%;
 }
 
 #filters::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
+    display: none;
 }
 
 .filter {
@@ -168,13 +242,14 @@ body {
     color: black !important;
 }
 
+
 /* Taxes Toggle button */
 #toggle-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin-left: 1rem;
+    margin-left: 1.5rem;
     font-size: 0.8rem;
+    width: 200px;
 }
 
 .toggle-switch {
@@ -220,6 +295,28 @@ input:checked + .toggle-slider:before {
     transform: translateX(20px);
 }
 
+/* Media Queries for smaller screens */
+@media (max-width: 768px) {
+    #filters-container {
+        flex-direction: column; /* Stack filters and toggle vertically */
+        align-items: flex-start;
+    }
+
+    .filter {
+        margin-right: 1rem;
+    }
+
+    .filter p {
+        font-size: 0.7rem;
+    }
+
+    #toggle-container {
+        flex-direction: row;
+        align-items: center;
+        margin-left: 1rem;
+    }
+}
+
 /* Star Rating CSS */
 .rating:not(:checked) > input {
     position: absolute;
@@ -252,4 +349,11 @@ input:checked + .toggle-slider:before {
 
 .rating > input:checked ~ label {
     color: #ffa723;
+}
+
+/* Rating System */
+@media (max-width: 768px) {
+    .rating > label {
+        font-size: 25px;
+    }
 }
