@@ -163,10 +163,17 @@ body {
     font-size: 0.8rem;
 }
 
+.filter a {
+    text-decoration: none;
+    color: black !important;
+}
+
+/* Taxes Toggle button */
 #toggle-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-left: 1rem; /* Align toggle switch to the right */
+    margin-left: 1rem;
     font-size: 0.8rem;
 }
 
@@ -211,4 +218,38 @@ input:checked + .toggle-slider {
 
 input:checked + .toggle-slider:before {
     transform: translateX(20px);
+}
+
+/* Star Rating CSS */
+.rating:not(:checked) > input {
+    position: absolute;
+    appearance: none;
+}
+
+.rating:not(:checked) > label {
+    float: right;
+    cursor: pointer;
+    font-size: 30px;
+    color: #666;
+}
+
+.rating:not(:checked) > label:before {
+    content: '★';
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #e58e09;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #ff9e0b;
+}
+
+.rating > input:checked ~ label {
+    color: #ffa723;
 }
