@@ -14,11 +14,16 @@ module.exports.isLoggedIn = (req, res, next) => {
 
 module.exports.saveRedirectUrl = (req, res, next) => {
     if (req.session.redirectUrl) {
+        // Prevent infinite loop by resetting redirectUrl if it points to /logout
+        if (req.session.redirectUrl === '/logout') {
+            req.session.redirectUrl = '/listings';
+        }
         res.locals.redirectUrl = req.session.redirectUrl;
         delete req.session.redirectUrl; // Clear the session to prevent reuse
     }
     next();
 };
+
 
 module.exports.isOwner = async (req, res, next) => {
     let { id } = req.params;

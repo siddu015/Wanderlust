@@ -1,0 +1,29 @@
+<% layout("layouts/boilerplate") %>
+
+
+<div class="container mt-5">
+    <h1>Update Your Profile</h1>
+    <form action="/<%= user._id %>?_method=PUT" method="POST">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="user[username]" value="<%= user.username %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="firstname" class="form-label">Firstname</label>
+            <input type="text" class="form-control" id="firstname" name="user[firstname]" value="<%= user.firstname %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="lastname" class="form-label">Lastname</label>
+            <input type="text" class="form-control" id="lastname" name="user[lastname]" value="<%= user.lastname %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="user[email]" value="<%= user.email %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="phoneNo" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phoneNo" name="user[phoneNo]" value="<%= user.phoneNo %>" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>

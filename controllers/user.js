@@ -1,5 +1,4 @@
 const User = require("../models/user");
-const passport = require("passport");
 const Listing = require('../models/listing');
 
 // Show Signup Form
@@ -84,3 +83,36 @@ module.exports.renderUserListings = async (req, res, next) => {
         next(err);
     }
 };
+
+module.exports.renderEditForm =  async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            req.flash("error", "User not found!");
+            return res.redirect("/");
+        }
+        res.render("users/edit", { user });
+    } catch (err) {
+        req.flash("error", "Something went wrong!");
+        res.redirect("/");
+    }
+}
+
+module.exports.updateProfile = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { username, firstname, lastname, email, phoneNo } = req.body.user;
+
+        const updatedUser = await User.findByIdAndUpdate(
+            id,
+            { username, firstname, lastname, email, phoneNo, },
+            { new: true, runValidators: true }
+        );
+
+        req.flash("success", "Profile updated successfully!");
+        res.redirect(`/profile`);
+    } catch (err) {
+        req.flash("error", "Error updating profile!");
+        res.redirect(`/users/${req.params.id}/edit`);
+    }
+}

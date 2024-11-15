@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require("passport-local-mongoose");
+const url = require("node:url");
 
 const userSchema = new Schema({
     firstname: {
@@ -18,6 +19,16 @@ const userSchema = new Schema({
     phoneNo: {
         type: Number,
         required: true
+    },
+    profilePic: {
+        url: {
+            type: String,
+            default: "https://img.freepik.com/premium-photo/young-smiling-man-cartoon-showing-ok-sign_894067-15510.jpg",
+        },
+        filename: {
+            type: String, // Correct type
+            default: "",
+        },
     },
 });
 
