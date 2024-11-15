@@ -56,6 +56,7 @@ const sessionOptions = {
 
 //Home Route
 app.get("/", (req, res) => {
+    req.flash("success", "Hello")
     res.redirect("/listings")
 })
 

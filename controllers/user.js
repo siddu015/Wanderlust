@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const passport = require("passport");
+const Listing = require('../models/listing');
 
 // Show Signup Form
 module.exports.renderSignupForm = (req, res) => {
@@ -43,3 +44,21 @@ module.exports.logout = (req, res, next) => {
         res.redirect("/listings");
     });
 };
+
+// Render Profile Page
+module.exports.renderProfilePage = async (req, res, next) => {
+    res.render('users/profile.ejs', { currUser: req.user });
+};
+
+// Render the user's listings
+module.exports.renderUserListings = async (req, res, next) => {
+    try {
+        const listings = await Listing.find({ owner: req.user._id });
+        console.log(listings)
+
+        res.render('users/your-listings.ejs', { listings: listings });
+    } catch (err) {
+        next(err);
+    }
+};
+

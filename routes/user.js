@@ -25,4 +25,12 @@ router.route("/login")
 // Logout Route
 router.get("/logout", userController.logout);
 
+// Profile Page Routes
+router.route("/profile")
+    .get(wrapAsync(userController.renderProfilePage));
+
+// Route to show the user's listings
+router.route('/your-listings')
+    .get(userController.renderUserListings);
+
 module.exports = router;

@@ -1,0 +1,31 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-4">
+    <h2 class="text-center text-uppercase mb-4">Your Listings</h2>
+
+    <!-- Check if the user has listings -->
+    <% if (listings.length > 0) { %>
+        <!-- Display listings in a row -->
+        <% listings.forEach(listing => { %>
+            <div class="row mb-4 listing-card">
+                <!-- Profile image and listing details -->
+                <div class="col-md-3">
+                    <img src="<%= listing.image.url %>" class="img-fluid card-img" alt="listing_image" />
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= listing.title %></h5>
+                        <p class="card-text">
+                             <%= listing.description %>
+                        </p>
+                        <p><strong>Price:</strong> &#8377;<%= listing.price.toLocaleString("en-IN") %> / night</p>
+                        <p><strong>Location:</strong> <%= listing.location %></p>
+                        <a href="/listings/<%= listing._id %>" class="btn btn-info">View Listing</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <p>You don't have any listings yet. Start by creating a new listing!</p>
+    <% } %>
+</div>
