@@ -6,24 +6,87 @@
             <!-- Profile Picture -->
             <div class="profile-pic-container">
                 <img
-                        src="<%= 'https://img.freepik.com/premium-photo/young-smiling-man-cartoon-showing-ok-sign_894067-15510.jpg' %>"
+                        src="<%= currUser.profilePic.url %>"
                         alt="<%= currUser.username %>'s Profile Picture"
                         class="profile-pic">
+                <div class="upload-overlay">
+                    <form action="/profile-pic/<%= currUser._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="profilePic" class="hidden-input" onchange="this.form.submit()">
+                        <span class="upload-text">Upload Picture</span>
+                    </form>
+                </div>
             </div>
 
-
-            <h4 class="mt-3"><%= currUser.firstname%> <%=currUser.lastname%></h4>
-            <p> <%= currUser.username %> </p>
+            <h4 class="mt-3"><%= currUser.firstname %> <%= currUser.lastname %></h4>
+            <p><%= currUser.username %></p>
 
             <hr>
-                <p class="text-muted">Email: <%= currUser.email %></p>
-                <p class="text-muted">Phone no: <%= currUser.phoneNo %></p>
-                <a href="/your-listings" class="btn btn-outline-primary mt-3 px-4 py-2">See Your Listings</a>
+            <p class="text-muted">Email: <%= currUser.email %></p>
+            <p class="text-muted">Phone no: <%= currUser.phoneNo %></p>
+            <a href="/your-listings" class="btn btn-outline-primary mt-3 px-4 py-2">See Your Listings</a>
             <hr class="w-50 mx-auto my-3">
 
-            <!-- Logout Button -->
-            <a href="/<%=currUser. _id%>/edit" class="btn btn-primary mt-3">Edit your profile</a>
+            <a href="/<%= currUser._id %>/edit" class="btn btn-primary mt-3">Edit your profile</a>
             <a href="/logout" class="btn btn-danger mt-3">Logout</a>
         </div>
     </div>
 </div>
+
+<style>
+    .profile-pic-container {
+        position: relative;
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-pic {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .profile-pic-container:hover .profile-pic {
+        transform: scale(1.1);
+    }
+
+    .upload-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .profile-pic-container:hover .upload-overlay {
+        opacity: 1;
+    }
+
+    .upload-text {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 12px;
+    }
+
+    .hidden-input {
+        position: absolute;
+        top: 25%;
+        left: 25%;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+</style>

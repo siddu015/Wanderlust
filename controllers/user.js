@@ -116,3 +116,24 @@ module.exports.updateProfile = async (req, res) => {
         res.redirect(`/users/${req.params.id}/edit`);
     }
 }
+
+module.exports.updateProfilePic = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(id);
+
+        console.log(user);
+
+
+        let url = req.file.path;
+        let filename = req.file.filename;
+        user.profilePic = {url, filename};
+        await user.save();
+
+        req.flash("success", "Profile Picture updated successfully!");
+        res.redirect(`/profile`);
+    } catch (err) {
+        req.flash("error", "Error updating profile!");
+        res.redirect(`/users/${req.params.id}/edit`);
+    }
+}

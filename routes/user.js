@@ -3,7 +3,11 @@ const router = express.Router();
 const passport = require("passport");
 const wrapAsync = require("../utils/wrapAsync");
 const userController = require("../controllers/user");
-const { saveRedirectUrl, isLoggedIn } = require("../middleware");
+const { saveRedirectUrl, isLoggedIn, validateListing} = require("../middleware");
+const multer  = require('multer')
+const {storage} = require("../cloudConfig");
+const listingController = require("../controllers/listing");
+const upload = multer({ storage })
 
 // Signup Routes
 router.route("/signup")
@@ -41,5 +45,10 @@ router.get("/:id/edit", isLoggedIn, wrapAsync(userController.renderEditForm));
 
 // Update Profile Route
 router.put("/:id", isLoggedIn, wrapAsync(userController.updateProfile));
+
+router.put("/profile-pic/:id", isLoggedIn, upload.single("profilePic"), wrapAsync(userController.updateProfilePic));
+
+
+
 
 module.exports = router;
