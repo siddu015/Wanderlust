@@ -6,10 +6,11 @@
         <br>
         <form method="POST" action="/login" novalidate class="needs-validation">
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input name="username" id="username" placeholder="Choose a username" type="text" class="form-control" required />
-                <div class="invalid-feedback">Please enter a username!</div>
+                <label for="loginField" class="form-label">Email/Phone/Username</label>
+                <input name="loginField" id="loginField" placeholder="Enter email, phone, or username" type="text" class="form-control" required />
+                <div class="invalid-feedback">Please enter a valid email, phone, or username!</div>
             </div>
+
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input name="password" id="password" placeholder="Create a password" type="password" class="form-control" required />

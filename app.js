@@ -54,18 +54,48 @@ const sessionOptions = {
     },
 }
 
-//Home Route
-app.get("/", (req, res) => {
-    req.flash("success", "Hello")
-    res.redirect("/listings")
-})
-
 app.use(session(sessionOptions));
 app.use(flash());
 
 app.use(passport.initialize())
 app.use(passport.session())
-passport.use(new LocalStrategy(User.authenticate()))
+passport.use(
+    new LocalStrategy(
+        { usernameField: "loginField", passwordField: "password" },
+        async (loginField, password, done) => {
+            try {
+                const query = {
+                    $or: [
+                        { email: loginField }, // Match by email
+                        { username: loginField }, // Match by username
+                    ],
+                };
+
+                // Add phone number check only if `loginField` is numeric
+                if (!isNaN(loginField)) {
+                    query.$or.push({ phoneNo: Number(loginField) });
+                }
+
+                const user = await User.findOne(query);
+
+                if (!user) {
+                    return done(null, false, { message: "Invalid login credentials." });
+                }
+
+                const isMatch = await user.authenticate(password);
+
+                if (!isMatch) {
+                    return done(null, false, { message: "Invalid login credentials." });
+                }
+
+                return done(null, user);
+            } catch (err) {
+                return done(err);
+            }
+        }
+    )
+);
+
 
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
@@ -82,6 +112,12 @@ app.use((req, res, next) => {
     res.locals.currUser = req.user;
     next();
 })
+
+//Home Route
+app.get("/", (req, res) => {
+    res.redirect("/listings")
+})
+
 
 app.use("/listings", listingsRouter)
 app.use("/listings/:id/reviews", reviewsRouter)

@@ -12,14 +12,33 @@
                 <div class="invalid-feedback">Please enter a username!</div>
             </div>
             <div class="mb-3">
+                <label for="firstname" class="form-label">FirstName</label>
+                <input name="firstname" id="firstname" placeholder="firstname" type="text" class="form-control" required />
+                <div class="invalid-feedback">Please enter a firstname!</div>
+            </div>
+            <div class="mb-3">
+                <label for="lastname" class="form-label">LastName</label>
+                <input name="lastname" id="lastname" placeholder="lastname" type="text" class="form-control" required />
+                <div class="invalid-feedback">Please enter a lastname!</div>
+            </div>
+            <div class="mb-3">
+                <label for="phoneNo" class="form-label">Phone No</label>
+                <input name="phoneNo" id="phoneNo" placeholder="+918234567890" type="tel" class="form-control" pattern="[0-9]{10}" required />
+                <div class="invalid-feedback">Please enter a valid phone number!</div>
+            </div>
+            <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input name="email" id="email" placeholder="example@example.com" type="email" class="form-control" required />
-                <div class="valid-feedback">Email looks good!</div>
                 <div class="invalid-feedback">Please enter a valid email address!</div>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input name="password" id="password" placeholder="Create a password" type="password" class="form-control" required />
+                <div class="invalid-feedback">Please enter a password!</div>
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Password</label>
+                <input name="confirmPassword" id="confirmPassword" placeholder="Confirm password" type="password" class="form-control" required />
                 <div class="invalid-feedback">Please enter a password!</div>
             </div>
             <br>

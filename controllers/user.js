@@ -10,8 +10,33 @@ module.exports.renderSignupForm = (req, res) => {
 // Handle Signup
 module.exports.signup = async (req, res, next) => {
     try {
-        const { username, email, password } = req.body;
-        const newUser = new User({ email, username });
+        const { username, firstname, lastname, phoneNo, email, password, confirmPassword } = req.body;
+
+        // Check for existing user by email, username, or phone number
+        const existingUserByEmail = await User.findOne({ email });
+        const existingUserByUsername = await User.findOne({ username });
+        const existingUserByPhoneNo = await User.findOne({ phoneNo });
+
+        if (existingUserByEmail) {
+            req.flash("error", "Email already in use. Please try another.");
+            return res.redirect("/signup");
+        }
+        if (existingUserByUsername) {
+            req.flash("error", "Username already taken. Please try another.");
+            return res.redirect("/signup");
+        }
+        if (existingUserByPhoneNo) {
+            req.flash("error", "Phone number already in use. Please try another.");
+            return res.redirect("/signup");
+        }
+
+        if (password !== confirmPassword) {
+            req.flash("error", "Passwords do not match!");
+            return res.redirect("/signup");
+        }
+
+        // Register new user
+        const newUser = new User({ firstname, lastname, email, phoneNo, username });
         const registeredUser = await User.register(newUser, password);
         req.login(registeredUser, (err) => {
             if (err) return next(err);
@@ -54,11 +79,8 @@ module.exports.renderProfilePage = async (req, res, next) => {
 module.exports.renderUserListings = async (req, res, next) => {
     try {
         const listings = await Listing.find({ owner: req.user._id });
-        console.log(listings)
-
-        res.render('users/your-listings.ejs', { listings: listings });
+        res.render('users/your-listings.ejs', { listings });
     } catch (err) {
         next(err);
     }
 };
-
