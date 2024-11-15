@@ -1,6 +1,6 @@
 <% layout("layouts/boilerplate") %>
-<div class="row">
-    <div class="col-8 offset-2">
+<div class="custom-row">
+    <div class="custom-col">
         <br>
         <h2 class="form-title">Create an Account</h2>
         <br>
@@ -13,13 +13,13 @@
             </div>
             <div class="mb-3">
                 <label for="firstname" class="form-label">FirstName</label>
-                <input name="firstname" id="firstname" placeholder="firstname" type="text" class="form-control" required />
-                <div class="invalid-feedback">Please enter a firstname!</div>
+                <input name="firstname" id="firstname" placeholder="First name" type="text" class="form-control" required />
+                <div class="invalid-feedback">Please enter a first name!</div>
             </div>
             <div class="mb-3">
                 <label for="lastname" class="form-label">LastName</label>
-                <input name="lastname" id="lastname" placeholder="lastname" type="text" class="form-control" required />
-                <div class="invalid-feedback">Please enter a lastname!</div>
+                <input name="lastname" id="lastname" placeholder="Last name" type="text" class="form-control" required />
+                <div class="invalid-feedback">Please enter a last name!</div>
             </div>
             <div class="mb-3">
                 <label for="phoneNo" class="form-label">Phone No</label>
@@ -37,9 +37,9 @@
                 <div class="invalid-feedback">Please enter a password!</div>
             </div>
             <div class="mb-3">
-                <label for="confirmPassword" class="form-label">Password</label>
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
                 <input name="confirmPassword" id="confirmPassword" placeholder="Confirm password" type="password" class="form-control" required />
-                <div class="invalid-feedback">Please enter a password!</div>
+                <div class="invalid-feedback">Please confirm your password!</div>
             </div>
             <br>
             <button class="btn btn-outline-primary mr-3 px-4">Sign Up</button>
@@ -47,3 +47,61 @@
         <p class="switch-account mt-3">Already have an account? <a href="/login">Login</a> here.</p>
     </div>
 </div>
+
+<style>
+    /* Login Page & signUp Page */
+    .custom-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem 2rem 2rem 2rem;
+        padding: 2rem 2rem 0 2rem;
+    }
+
+    .custom-col {
+        background-color: #f9f9f9; /* Background color for the form */
+        padding: 2rem;
+        border-radius: 8px; /* Rounded corners for the form */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        width: 70%; /* Increased width */
+    }
+
+
+    /* Title styling */
+    .form-title {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Form control styling for inputs */
+    .form-control {
+        border-radius: 5px;
+        box-shadow: none;
+        margin-bottom: 1rem; /* Space between form elements */
+    }
+
+    /* Error message styling */
+    .invalid-feedback {
+        font-size: 0.875rem;
+        color: red;
+    }
+
+    /* Link styling for account switch */
+    .switch-account {
+        text-align: center;
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
+
+    .switch-account a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .switch-account a:hover {
+        text-decoration: underline;
+    }
+
+</style>
+

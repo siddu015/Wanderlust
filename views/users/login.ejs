@@ -1,6 +1,6 @@
 <% layout("layouts/boilerplate") %>
-<div class="row">
-    <div class="col-8 offset-2">
+<div class="custom-row">
+    <div class="custom-col">
         <br>
         <h2 class="form-title">Login</h2>
         <br>
@@ -17,8 +17,112 @@
                 <div class="invalid-feedback">Please enter a password!</div>
             </div>
             <br>
-            <button class="btn btn-outline-primary mr-3 px-4">Login</button>
+            <button class="btn custom-btn">Login</button>
         </form>
         <p class="switch-account mt-3">If you are not registered, <a href="/signup">sign up</a> to create an account.</p>
     </div>
 </div>
+
+<div class="custom-social-login">
+    <a href="/auth/google" class="btn custom-btn-google">Login with Google</a>
+    <a href="/auth/facebook" class="btn custom-btn-facebook">Login with Facebook</a>
+</div>
+
+<style>
+    /* Login Page & signUp Page */
+    .custom-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem 2rem 2rem 2rem;
+        padding: 2rem 2rem 0 2rem;
+    }
+
+    /* Adjust the form container for proper spacing and centering */
+    .custom-col {
+        background-color: #f9f9f9; /* Optional background color for the form */
+        padding: 2rem; /* Add padding inside the form container */
+        border-radius: 8px; /* Rounded corners for the form */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+
+    /* Title styling */
+    .form-title {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Form control styling for inputs */
+    .form-control {
+        border-radius: 5px;
+        box-shadow: none;
+        margin-bottom: 1rem; /* Space between form elements */
+    }
+
+    /* Error message styling */
+    .invalid-feedback {
+        font-size: 0.875rem;
+        color: red;
+    }
+
+    .custom-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 5px;
+        background-color: #007bff; /* Set background color */
+        border: none; /* Optional: Remove border for cleaner look */
+    }
+
+    .custom-btn:hover {
+        background-color: #0056b3; /* Hover effect */
+    }
+
+
+    /* Styling for social login section */
+    .custom-social-login {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 20px;
+    }
+
+    /* Button styles for social login */
+    .custom-social-login .btn {
+        width: 20%;
+        margin-top: 10px;
+        padding: 12px;
+        border-radius: 5px;
+        font-size: 1rem;
+        display: block;
+    }
+
+    .custom-social-login .custom-btn-google {
+        background-color: #db4437;
+        color: white;
+    }
+
+    .custom-social-login .custom-btn-facebook {
+        background-color: #3b5998;
+        color: white;
+    }
+
+    /* Link styling for account switch */
+    .switch-account {
+        text-align: center;
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
+
+    .switch-account a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .switch-account a:hover {
+        text-decoration: underline;
+    }
+</style>
