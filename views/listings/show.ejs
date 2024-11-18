@@ -13,12 +13,34 @@
         <!-- Listing Card -->
         <div class="col-md-6 col-lg-6">
             <div class="card shadow-sm">
-                <img
-                        src="<%= listing.image.url %>"
-                        class="card-img-top rounded-top"
-                        alt="listing_image"
-                        style="max-height: 320px; object-fit: cover;"
-                />
+                <!-- Carousel for Images -->
+                <div id="imageCarousel<%= listing._id %>" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <% listing.images.forEach((image, index) => { %>
+                            <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                <img
+                                        src="<%= image.url %>"
+                                        class="d-block w-100 rounded-top"
+                                        alt="listing_image"
+                                        style="max-height: 320px; object-fit: cover;"
+                                />
+                            </div>
+                        <% }); %>
+                    </div>
+
+                    <% if (listing.images.length > 1) { %>
+                        <!-- Left and Right Buttons -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel<%= listing._id %>" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel<%= listing._id %>" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    <% } %>
+                </div>
+
                 <p class="card-text text-muted mt-2">Owned by <%= listing.owner.username %></p>
 
                 <div class="card-body">

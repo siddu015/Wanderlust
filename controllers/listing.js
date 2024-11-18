@@ -53,21 +53,24 @@ module.exports.createListing = async (req, res) => {
         limit: 1,
     }).send();
 
-    let url = req.file.path;
-    let filename = req.file.filename;
+    // Process uploaded images
+    const images = req.files.map((file) => ({
+        url: file.path,
+        filename: file.filename,
+    }));
 
+    // Create a new listing
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
-    newListing.image = { url, filename };
-
+    newListing.images = images; // Save all uploaded images
     newListing.geometry = response.body.features[0].geometry;
 
     await newListing.save();
 
+
     req.flash("success", "New Listing Created");
     res.redirect("/listings");
 }
-
 
 
 // Render edit form for a listing

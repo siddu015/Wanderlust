@@ -11,7 +11,20 @@ const upload = multer({ storage })
 // Index and Create Routes
 router.route("/")
     .get(wrapAsync(listingController.index))
-    .post(isLoggedIn, upload.single("listing[image]"), validateListing, wrapAsync(listingController.createListing));
+    .post(
+        isLoggedIn,
+        upload.array("listing[images]", 5),
+        (req, res, next) => {
+            // Add images from uploaded files to req.body
+            req.body.listing.images = req.files.map((file) => ({
+                url: file.path,
+                filename: file.filename,
+            }));
+            next();
+        },
+        validateListing,
+        wrapAsync(listingController.createListing)
+    );
 
 // New Route
 router.get("/new",

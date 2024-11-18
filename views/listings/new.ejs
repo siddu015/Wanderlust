@@ -19,8 +19,16 @@
             </div>
 
             <div class="mb-3">
-                <label for="image" class="form-label">Upload Image</label>
-                <input name="listing[image]" type="file" class="form-control" />
+                <label for="images" class="form-label">Upload Images</label>
+                <input
+                        name="listing[images]"
+                        type="file"
+                        class="form-control"
+                        multiple
+                        required
+                />
+                <small class="text-muted">You can upload 1 to 5 images.</small>
+                <div class="invalid-feedback">Please upload at least one image.</div>
             </div>
 
             <div class="row">

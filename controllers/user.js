@@ -111,15 +111,15 @@ module.exports.updateProfile = async (req, res) => {
         // If any of these fields already exist and are not associated with the current user, return an error
         if (existingUserByEmail && existingUserByEmail._id.toString() !== id) {
             req.flash("error", "Email already in use. Please try another.");
-            return res.redirect(`/users/${id}/edit`);
+            return res.redirect(`/${id}/edit`);
         }
         if (existingUserByUsername && existingUserByUsername._id.toString() !== id) {
             req.flash("error", "Username already taken. Please try another.");
-            return res.redirect(`/users/${id}/edit`);
+            return res.redirect(`/${id}/edit`);
         }
         if (existingUserByPhoneNo && existingUserByPhoneNo._id.toString() !== id) {
             req.flash("error", "Phone number already in use. Please try another.");
-            return res.redirect(`/users/${id}/edit`);
+            return res.redirect(`/${id}/edit`);
         }
 
         // Update the user's profile with the new information
@@ -134,7 +134,7 @@ module.exports.updateProfile = async (req, res) => {
     }
     catch (err) {
         req.flash("error", "Error updating profile!");
-        res.redirect(`/users/${req.params.id}/edit`);
+        res.redirect(`/${req.params.id}/edit`);
     }
 }
 
