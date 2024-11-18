@@ -2,6 +2,7 @@ const Listing = require("../models/listing");
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
+const {cloudinary} = require("../cloudConfig");
 
 
 //All listings
@@ -20,7 +21,6 @@ module.exports.index = async (req, res) => {
         res.render("listings/filter.ejs", { allListings });
     }
 };
-
 
 //Form to create a new Listing
 module.exports.renderNewForm = (req, res) => {
@@ -53,74 +53,107 @@ module.exports.createListing = async (req, res) => {
         limit: 1,
     }).send();
 
-    // Process uploaded images
     const images = req.files.map((file) => ({
         url: file.path,
         filename: file.filename,
     }));
 
-    // Create a new listing
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
-    newListing.images = images; // Save all uploaded images
+    newListing.images = images;
     newListing.geometry = response.body.features[0].geometry;
 
     await newListing.save();
-
 
     req.flash("success", "New Listing Created");
     res.redirect("/listings");
 }
 
-
-// Render edit form for a listing
+// Render edit form for a listing with multiple images
 module.exports.renderEditForm = async (req, res) => {
     const { id } = req.params;
     const listing = await Listing.findById(id);
+
     if (!listing) {
         req.flash("error", "Listing you requested to edit does not exist!");
         return res.redirect("/listings");
     }
 
-    let originalImageUrl = listing.image.url;
-    originalImageUrl = originalImageUrl.replace("/upload", "/upload/h_100,w_250");
+    let imageUrls = [];
+    if (listing.images && Array.isArray(listing.images)) {
+        imageUrls = listing.images.map(image => {
+            return image.url.replace("/upload", "/upload/h_100,w_250");
+        });
+    }
 
-    res.render("listings/edit.ejs", { listing, originalImageUrl });
+    res.render("listings/edit.ejs", { listing, imageUrls });
 };
 
 // Update a listing
 module.exports.updateListing = async (req, res) => {
     const { id } = req.params;
-    let listing = await Listing.findById(id);
+    const listing = await Listing.findById(id);
+
+    if (!listing) {
+        req.flash("error", "Listing does not exist!");
+        return res.redirect("/listings");
+    }
 
     if (req.body.listing.location && req.body.listing.location !== listing.location) {
-        let response = await geocodingClient.forwardGeocode({
+        const response = await geocodingClient.forwardGeocode({
             query: req.body.listing.location,
             limit: 1,
         }).send();
 
         listing.geometry = response.body.features[0].geometry;
         listing.location = req.body.listing.location;
-        await listing.save();
     }
 
-    listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+    Object.assign(listing, req.body.listing);
 
-    if(typeof req.file !== "undefined") {
-        let url = req.file.path;
-        let filename = req.file.filename;
-        listing.image = { url, filename };
-        await listing.save();
+    // Remove all old images from storage and database
+    if (listing.images && listing.images.length > 0) {
+        for (let img of listing.images) {
+            await cloudinary.uploader.destroy(img.filename);
+        }
+        listing.images = [];
     }
 
-    req.flash("success", "Listing Updated!");
+    // Append new images if uploaded
+    if (req.files && req.files.length > 0) {
+        const newImages = req.files.map((file) => ({
+            url: file.path,
+            filename: file.filename,
+        }));
+        listing.images.push(...newImages);
+    }
+
+    await listing.save();
+
+    req.flash("success", "Listing updated successfully!");
     res.redirect(`/listings/${id}`);
 };
 
 // Delete a listing
 module.exports.deleteListing = async (req, res) => {
     const { id } = req.params;
+
+    // Find the listing by ID
+    const listing = await Listing.findById(id);
+
+    if (!listing) {
+        req.flash("error", "Listing does not exist!");
+        return res.redirect("/listings");
+    }
+
+    if (listing.images && listing.images.length > 0) {
+        for (let img of listing.images) {
+            await cloudinary.uploader.destroy(img.filename);
+        }
+    }
+
     await Listing.findByIdAndDelete(id);
+
     req.flash("success", "Listing Deleted!");
     res.redirect("/listings");
 };

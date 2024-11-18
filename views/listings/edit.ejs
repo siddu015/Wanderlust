@@ -4,7 +4,7 @@
     <br>
     <h2>Edit your listing</h2>
     <br>
-    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation"  enctype="multipart/form-data">
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required/>
@@ -13,19 +13,28 @@
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea name="listing[description]" class="form-control" required> <%= listing.description %> </textarea>
+            <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
             <div class="invalid-feedback">Please enter a short description</div>
         </div>
 
         <div class="mb-3" style="width: 100%; padding: 10px;">
-            Original Image
-            <img src="<%= originalImageUrl %>" alt="Listing Image" style="height: 200px; width: auto; display: block;">
+            <h5>Original Images</h5>
+            <% if (imageUrls && imageUrls.length > 0) { %>
+                <div class="row">
+                    <% imageUrls.forEach(url => { %>
+                        <div class="col-md-4 mb-3">
+                            <img src="<%= url %>" alt="Listing Image" style="height: 200px; width: auto; display: block;"/>
+                        </div>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <p>No images available</p>
+            <% } %>
         </div>
 
-
         <div class="mb-3">
-            <label for="image" class="form-label">Upload New Image</label>
-            <input name="listing[image]" type="file" class="form-control" />
+            <label for="images" class="form-label">Upload New Images</label>
+            <input name="listing[images]" type="file" class="form-control" multiple/>
         </div>
 
         <div class="row">
@@ -40,6 +49,7 @@
                 <div class="invalid-feedback">Country name should be valid</div>
             </div>
         </div>
+
         <div class="mb-3">
             <label for="location" class="form-label">Location</label>
             <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control" required/>
@@ -48,8 +58,8 @@
 
         <div class="mb-3">
             <label for="category" class="form-label">Category</label>
-            <select name="listing[category]"  class="form-select" required>
-                <option value="<%= listing.category %>" >Select a category</option>
+            <select name="listing[category]" class="form-select" required>
+                <option value="<%= listing.category %>">Select a category</option>
                 <option value="Trending" <%= listing.category === 'Trending' ? 'selected' : '' %>>Trending</option>
                 <option value="Rooms" <%= listing.category === 'Rooms' ? 'selected' : '' %>>Rooms</option>
                 <option value="Iconic Cities" <%= listing.category === 'Iconic Cities' ? 'selected' : '' %>>Iconic Cities</option>
