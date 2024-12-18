@@ -103,12 +103,10 @@ module.exports.updateProfile = async (req, res) => {
         const { id } = req.params;
         const { username, firstname, lastname, email, phoneNo } = req.body.user;
 
-        // Check for existing user by email, username, or phone number
         const existingUserByEmail = await User.findOne({ email });
         const existingUserByUsername = await User.findOne({ username });
         const existingUserByPhoneNo = await User.findOne({ phoneNo });
 
-        // If any of these fields already exist and are not associated with the current user, return an error
         if (existingUserByEmail && existingUserByEmail._id.toString() !== id) {
             req.flash("error", "Email already in use. Please try another.");
             return res.redirect(`/${id}/edit`);
@@ -122,7 +120,6 @@ module.exports.updateProfile = async (req, res) => {
             return res.redirect(`/${id}/edit`);
         }
 
-        // Update the user's profile with the new information
         const updatedUser = await User.findByIdAndUpdate(
             id,
             { username, firstname, lastname, email, phoneNo },
