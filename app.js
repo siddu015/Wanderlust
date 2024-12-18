@@ -12,7 +12,6 @@ const ExpressError = require("./utils/ExpressError");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("./passportConfig");
-const User = require("./models/user.js");
 
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
@@ -20,8 +19,8 @@ const userRouter = require("./routes/user.js");
 const authRouter = require("./routes/authRoutes.js");
 
 const port = 8080;
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
-//let dbUrl = process.env.ATLASDB_URL
+// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+let dbUrl = process.env.ATLASDB_URL
 
 main()
     .then(() => {
@@ -32,7 +31,7 @@ main()
     });
 
 async function main() {
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(dbUrl);
 }
 
 app.use(express.urlencoded({ extended: true }));
