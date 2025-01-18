@@ -10,7 +10,7 @@
             <div class="row mb-4 listing-card">
                 <!-- Profile image and listing details -->
                 <div class="col-md-3">
-                    <img src="<%= listing.image.url %>" class="img-fluid card-img" alt="listing_image" />
+                    <img src="<%= listing.images[0].url %>" class="img-fluid card-img fixed-size-img" alt="listing_image" />
                 </div>
                 <div class="col-md-9">
                     <div class="card-body">
@@ -29,3 +29,13 @@
         <p>You don't have any listings yet. Start by creating a new listing!</p>
     <% } %>
 </div>
+
+<style>
+    .fixed-size-img {
+        width: 100%; /* Make it responsive within its container */
+        height: 220px; /* Set a consistent height */
+        object-fit: cover; /* Ensures images maintain aspect ratio and fill the area */
+        border-radius: 8px; /* Optional: Adds rounded corners */
+        border: 1px solid #ccc; /* Optional: Adds a border for better visibility */
+    }
+</style>
