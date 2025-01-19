@@ -9,12 +9,15 @@
             <div class="inputGroup">
                 <input name="listing[title]" type="text" required autocomplete="off" />
                 <label for="title">Add a catchy title your home</label>
+                <div class="valid-feedback">Title looks good!</div>
+                <div class="invalid-feedback">Please enter a title!</div>
             </div>
 
             <!-- Description -->
             <div class="inputGroup">
                 <textarea name="listing[description]" required autocomplete="off" style="resize: none;"></textarea>
                 <label for="description">Description</label>
+                <div class="invalid-feedback">Please enter a short description</div>
             </div>
 
             <!-- Upload Images -->
@@ -30,15 +33,18 @@
                 <label class="custom-file-upload">
                     <input class="title" type="file" name="listing[images]" required multiple />
                     Choose max of 5 files
+                    <div class="invalid-feedback">Please upload at least one image.</div>
                 </label>
             </div>
 
+            <!--Price and Country-->
             <div class="row" style="margin-top: 20px; margin-bottom: -20px;">
                 <!-- Price -->
                 <div class="col-md-4" >
                     <div class="inputGroup">
-                        <input name="listing[price]" type="number" required autocomplete="off" />
+                        <input name="listing[price]" type="number"  required autocomplete="off" />
                         <label for="price">Price</label>
+                        <div class="invalid-feedback">Price should be valid</div>
                     </div>
                 </div>
                 <!-- Country -->
@@ -46,6 +52,7 @@
                     <div class="inputGroup">
                         <input name="listing[country]" type="text" required autocomplete="off" />
                         <label for="country">Country</label>
+                        <div class="invalid-feedback">Country name should be valid</div>
                     </div>
                 </div>
             </div>
@@ -54,6 +61,7 @@
             <div class="inputGroup" >
                 <input name="listing[location]" type="text" required autocomplete="off" />
                 <label for="location">Location</label>
+                <div class="invalid-feedback">Location should be valid</div>
             </div>
 
             <!-- Category -->
@@ -72,6 +80,7 @@
                     <option value="Pet-Friendly">Pet-Friendly</option>
                 </select>
                 <label for="category"></label>
+                <div class="invalid-feedback">Please select a category</div>
             </div>
 
             <br />
@@ -288,7 +297,7 @@
         display: flex;
         align-items: center;
         border: none;
-        border-radius: 16px;
+        border-radius: 20px;
         overflow: hidden;
         transition: all 0.2s;
         cursor: pointer;
@@ -331,6 +340,5 @@
             transform: translateY(-0.1em);
         }
     }
-
 
 </style>

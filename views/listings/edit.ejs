@@ -2,28 +2,29 @@
 
 <div class="col-8 offset-2">
     <br>
-    <h2>Edit your listing</h2>
+    <h2 class="heading">Edit your listing</h2>
     <br>
     <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
-        <div class="mb-3">
+        <div class="inputGroup">
             <label for="title" class="form-label">Title</label>
             <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required/>
             <div class="invalid-feedback">Please enter a title!</div>
             <div class="valid-feedback">Title looks good!</div>
         </div>
-        <div class="mb-3">
+
+        <div class="inputGroup">
             <label for="description" class="form-label">Description</label>
             <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
             <div class="invalid-feedback">Please enter a short description</div>
         </div>
 
-        <div class="mb-3" style="width: 100%; padding: 10px;">
-            <h5>Original Images</h5>
+        <div class="inputGroup" >
+            <label style="margin-right: 20px;"> Original Images </label>
             <% if (imageUrls && imageUrls.length > 0) { %>
                 <div class="row">
                     <% imageUrls.forEach(url => { %>
-                        <div class="col-md-4 mb-3">
-                            <img src="<%= url %>" alt="Listing Image" style="height: 200px; width: auto; display: block;"/>
+                        <div class="col-md-4 mb-3" >
+                            <img src="<%= url %>" alt="Listing Image" style="height:200px; width: auto; display: block; margin:5px 0 0 5px; border-radius: 10px"/>
                         </div>
                     <% }); %>
                 </div>
@@ -32,31 +33,47 @@
             <% } %>
         </div>
 
-        <div class="mb-3">
-            <label for="images" class="form-label">Upload New Images</label>
-            <input name="listing[images]" type="file" class="form-control" multiple/>
+        <!-- Upload Images -->
+        <h6 style="margin-bottom: 10px; margin-left: 5px; font-weight: 200;">Upload Your Home Images</h6>
+        <div class="folder-container">
+            <div class="folder">
+                <div class="front-side">
+                    <div class="tip"></div>
+                    <div class="cover"></div>
+                </div>
+                <div class="back-side cover"></div>
+            </div>
+            <label class="custom-file-upload">
+                <input class="title" type="file" name="listing[images]" multiple />
+                Choose max of 5 files
+            </label>
         </div>
 
-        <div class="row">
-            <div class="mb-3 col-md-4">
-                <label for="price" class="form-label">Price</label>
-                <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" required/>
-                <div class="invalid-feedback">Price should be valid</div>
+        <!--Price and Country-->
+        <div class="row" style="margin-top: 20px; margin-bottom: -30px;">
+            <div class="col-md-4">
+                <div class="inputGroup">
+                    <label for="price" class="form-label">Price</label>
+                    <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" required/>
+                    <div class="invalid-feedback">Price should be valid</div>
+                </div>
             </div>
-            <div class="mb-3 col-md-8">
-                <label for="country" class="form-label">Country</label>
-                <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control" required/>
-                <div class="invalid-feedback">Country name should be valid</div>
+            <div class="col-md-8">
+                <div class="inputGroup">
+                    <label for="country" class="form-label">Country</label>
+                    <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control" required/>
+                    <div class="invalid-feedback">Country name should be valid</div>
+                </div>
             </div>
         </div>
 
-        <div class="mb-3">
+        <div class="inputGroup">
             <label for="location" class="form-label">Location</label>
             <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control" required/>
             <div class="invalid-feedback">Location should be valid</div>
         </div>
 
-        <div class="mb-3">
+        <div class="inputGroup">
             <label for="category" class="form-label">Category</label>
             <select name="listing[category]" class="form-select" required>
                 <option value="<%= listing.category %>">Select a category</option>
@@ -71,9 +88,259 @@
                 <option value="Romantic Getaways" <%= listing.category === 'Romantic Getaways' ? 'selected' : '' %>>Romantic Getaways</option>
                 <option value="Pet-Friendly" <%= listing.category === 'Pet-Friendly' ? 'selected' : '' %>>Pet-Friendly</option>
             </select>
-            <div class="invalid-feedback">Please select a category</div>
+            <div class="invalid-feedback"> Please select a category</div>
         </div>
 
-        <button class="btn btn-outline-primary mr-3 px-4">Edit</button>
+        <br>
+        <button style="margin-top: -30px; margin-bottom: 20px">
+            <div class="svg-wrapper-1">
+                <div class="svg-wrapper">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                    >
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path
+                                fill="currentColor"
+                                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                        ></path>
+                    </svg>
+                </div>
+            </div>
+            <span>Edit </span>
+        </button>
+
     </form>
 </div>
+
+<style>
+    .heading {
+        text-align: center;
+        font-weight: 900;
+        font-size: 28px;
+        color: rgb(16, 137, 211);
+        margin-top: 20px;
+        margin-bottom: -10px;
+    }
+
+    .inputGroup {
+        font-family: 'Segoe UI', sans-serif;
+        margin: 1.5em 0;
+        max-width: 100%;
+        position: relative;
+    }
+
+    .inputGroup input,
+    .inputGroup textarea,
+    .inputGroup select {
+        font-size: 100%;
+        padding: 0.8em;
+        outline: none;
+        border: 2px solid rgb(200, 200, 200);
+        background-color: transparent;
+        border-radius: 20px;
+        width: 100%;
+    }
+
+    .inputGroup label {
+        font-size: 100%;
+        margin-left: 0.5em;
+        color: rgb(100, 100, 100);
+    }
+
+    /*.inputGroup :is(input:focus, textarea:focus, select:focus, input:valid, textarea:valid, select:valid) ~ label {*/
+    /*    transform: translateY(-50%) scale(0.9);*/
+    /*    margin: 0em;*/
+    /*    margin-left: 1.3em;*/
+    /*    padding: 0.4em;*/
+    /*    background-color: rgba(255, 255, 255, 0.76);*/
+    /*    border-radius: 10px;*/
+    /*}*/
+
+    /*.inputGroup :is(input:focus, textarea:focus, select:focus, input:valid, textarea:valid, select:valid) {*/
+    /*    border-color: rgb(150, 150, 200);*/
+    /*}*/
+
+
+
+    .folder-container {
+        --transition: 350ms;
+        --folder-W: 120px;
+        --folder-H: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 10px;
+        background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+        border-radius: 15px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        height: calc(var(--folder-H) * 1.7);
+        position: relative;
+    }
+
+    .folder {
+        position: absolute;
+        top: -20px;
+        left: calc(50% - 60px);
+        animation: float 2.5s infinite ease-in-out;
+        transition: transform var(--transition) ease;
+    }
+
+    .folder:hover {
+        transform: scale(1.05);
+    }
+
+    .folder .front-side,
+    .folder .back-side {
+        position: absolute;
+        transition: transform var(--transition);
+        transform-origin: bottom center;
+    }
+
+    .folder .back-side::before,
+    .folder .back-side::after {
+        content: "";
+        display: block;
+        background-color: white;
+        opacity: 0.5;
+        z-index: 0;
+        width: var(--folder-W);
+        height: var(--folder-H);
+        position: absolute;
+        transform-origin: bottom center;
+        border-radius: 15px;
+        transition: transform 350ms;
+        z-index: 0;
+    }
+
+    .container:hover .back-side::before {
+        transform: rotateX(-5deg) skewX(5deg);
+    }
+    .container:hover .back-side::after {
+        transform: rotateX(-15deg) skewX(12deg);
+    }
+
+    .folder .front-side {
+        z-index: 1;
+    }
+
+    .container:hover .front-side {
+        transform: rotateX(-40deg) skewX(15deg);
+    }
+
+    .folder .tip {
+        background: linear-gradient(135deg, #ff9a56, #ff6f56);
+        width: 80px;
+        height: 20px;
+        border-radius: 12px 12px 0 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: -10px;
+        z-index: 2;
+    }
+
+    .folder .cover {
+        background: linear-gradient(135deg, #ffe563, #ffc663);
+        width: var(--folder-W);
+        height: var(--folder-H);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+    }
+
+    .custom-file-upload {
+        font-size: 1.1em;
+        color: black;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: background var(--transition) ease;
+        display: inline-block;
+        width: 100%;
+        padding: 10px 35px;
+        position: relative;
+    }
+
+    .custom-file-upload:hover {
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    .custom-file-upload input[type="file"] {
+        display: none;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    /* From Uiverse.io by adamgiebl */
+    button {
+        font-family: inherit;
+        font-size: 20px;
+        background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+        color: white;
+        padding: 0.7em 1em;
+        padding-left: 0.9em;
+        display: flex;
+        align-items: center;
+        border: none;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.2s;
+        cursor: pointer;
+    }
+
+    button span {
+        display: block;
+        margin-left: 0.3em;
+        transition: all 0.3s ease-in-out;
+    }
+
+    button svg {
+        display: block;
+        transform-origin: center center;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    button:hover .svg-wrapper {
+        animation: fly-1 0.6s ease-in-out infinite alternate;
+    }
+
+    button:hover svg {
+        transform: translateX(1.2em) rotate(45deg) scale(1.1);
+    }
+
+    button:hover span {
+        transform: translateX(5em);
+    }
+
+    button:active {
+        transform: scale(0.95);
+    }
+
+    @keyframes fly-1 {
+        from {
+            transform: translateY(0.1em);
+        }
+
+        to {
+            transform: translateY(-0.1em);
+        }
+    }
+
+</style>

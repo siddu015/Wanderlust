@@ -6,7 +6,7 @@
 }
 
 .searchbar {
-    background: linear-gradient(135deg, rgb(179, 208, 253) 0%, rgb(164, 202, 248) 100%);
+    background: linear-gradient(45deg, rgba(16, 137, 211, 0.7) 0%, rgba(18, 177, 209, 0.6) 100%);
     border-radius: 1000px;
     padding: 10px;
     margin: 1rem;
