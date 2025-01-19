@@ -16,16 +16,5 @@ router.get('/google/callback',
     authController.authCallback,
 );
 
-router.get('/facebook', passport.authenticate('facebook', {
-    scope: ['email']
-}));
-
-router.get('/facebook/callback', passport.authenticate('facebook', {
-    successRedirect: '/profile',
-    failureRedirect: '/login',
-    failureFlash: true,
-    }),
-    authController.authCallback,
-);
 
 module.exports = router;

@@ -14,6 +14,9 @@ filters.forEach(filter => {
 // Add event listener to the search button for location search
 searchButton.addEventListener('click', () => {
     const location = searchInput.value.trim();
+
+    if(!location) return;
+
     filterListings(null, location);
 });
 

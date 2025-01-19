@@ -111,16 +111,17 @@ module.exports.updateListing = async (req, res) => {
 
     Object.assign(listing, req.body.listing);
 
-    // Remove all old images from storage and database
-    if (listing.images && listing.images.length > 0) {
-        for (let img of listing.images) {
-            await cloudinary.uploader.destroy(img.filename);
-        }
-        listing.images = [];
-    }
-
-    // Append new images if uploaded
+    // Only remove old images if new images are uploaded
     if (req.files && req.files.length > 0) {
+        // Remove all old images from storage and database
+        if (listing.images && listing.images.length > 0) {
+            for (let img of listing.images) {
+                await cloudinary.uploader.destroy(img.filename);
+            }
+            listing.images = [];
+        }
+
+        // Append new images if uploaded
         const newImages = req.files.map((file) => ({
             url: file.path,
             filename: file.filename,
