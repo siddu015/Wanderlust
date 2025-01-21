@@ -16,6 +16,7 @@
     font-size: 1rem;
     gap: 10px;
 }
+
 .editBtn::before {
     content: "";
     width: 200%;
@@ -28,9 +29,11 @@
     border-radius: 50%;
     filter: blur(10px);
 }
+
 .editBtn:hover::before {
     transform: scale(1);
 }
+
 .editBtn:hover {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
 }
@@ -42,9 +45,11 @@
     transition: all 0.2s;
     transform-origin: bottom;
 }
+
 .editBtn:hover svg {
     transform: rotate(-15deg) translateX(5px);
 }
+
 .editBtn::after {
     content: "";
     width: 40px;
@@ -59,8 +64,48 @@
     transform-origin: left;
     transition: transform 0.5s ease-out;
 }
+
 .editBtn:hover::after {
     transform: scaleX(1);
     left: 0px;
     transform-origin: right;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .editBtn {
+        width: 100px;
+        height: 40px;
+        font-size: 0.9rem;
+        gap: 8px;
+        border-radius: 15px;
+    }
+
+    .editBtn svg {
+        height: 12px;
+    }
+
+    .editBtn::after {
+        width: 30px;
+        bottom: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .editBtn {
+        width: 80px;
+        height: 35px;
+        font-size: 0.8rem;
+        gap: 5px;
+        border-radius: 12px;
+    }
+
+    .editBtn svg {
+        height: 10px;
+    }
+
+    .editBtn::after {
+        width: 25px;
+        bottom: 10px;
+    }
 }

@@ -38,3 +38,58 @@
         font-size: 25px;
     }
 }
+
+
+
+
+
+/* Reviews Section */
+.review-item {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.review-item .fw-bold {
+    font-size: 1rem;
+}
+
+.review-item p {
+    margin-bottom: 0.5rem;
+}
+
+.review-item button {
+    font-size: 0.8rem;
+}
+
+.comment-heading {
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .review-form, .review-section {
+        padding: 1rem;
+    }
+
+    .review-form h4, .review-section h4 {
+        font-size: 1.25rem;
+    }
+
+    .rating label {
+        font-size: 25px;
+    }
+
+    .review-item {
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .review-item .fw-bold {
+        font-size: 0.95rem;
+    }
+
+
+    .comment-heading {
+        font-size: 0.8rem;
+    }
+}

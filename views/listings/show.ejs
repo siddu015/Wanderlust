@@ -6,24 +6,20 @@
 
 <div class="container mt-3">
     <div class="row justify-content-center">
-        <div class="col-10 text-center">
+        <div class="col-lg-10 col-md-10 col-sm-12 text-center">
             <h3 class="mb-4"><%= listing.title %></h3>
         </div>
 
+
         <!-- Listing Card -->
-        <div class="col-md-6 col-lg-6">
+        <div class="col-lg-8 col-md-10 col-sm-12">
             <div class="card shadow-sm">
                 <!-- Carousel for Images -->
                 <div id="imageCarousel<%= listing._id %>" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <% listing.images.forEach((image, index) => { %>
                             <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                                <img
-                                        src="<%= image.url %>"
-                                        class="d-block w-100 rounded-top"
-                                        alt="listing_image"
-                                        style="max-height: 320px; object-fit: cover;"
-                                />
+                                <img src="<%= image.url %>" class="d-block w-100 rounded-top" alt="listing_image" style="max-height: 400px; object-fit: cover;" />
                             </div>
                         <% }); %>
                     </div>
@@ -40,10 +36,9 @@
                         </button>
                     <% } %>
                 </div>
-
                 <p class="card-text text-muted mt-2">Owned by <%= listing.owner.username %></p>
 
-                <div class="card-body">
+                <div class="card-body-show">
                     <p class="card-text text-muted mb-2"><%= listing.description %></p>
                     <hr>
                     <p class="card-text mb-1">
@@ -55,6 +50,7 @@
                 </div>
             </div>
         </div>
+
 
         <!-- Edit/Delete Options for Owner -->
         <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
@@ -125,7 +121,7 @@
 
         <!-- Review Form -->
         <% if(currUser) { %>
-            <div class="container mt-4 mb-4 p-4 bg-light rounded shadow-sm" style="max-width: 600px;">
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12 mt-4 mb-4 p-4 bg-light rounded shadow-sm review-form">
                 <h4 class="mb-3">Leave a Review</h4>
                 <form action="/listings/<%= listing.id %>/reviews" method="POST" novalidate class="needs-validation">
                     <!-- Star Rating System -->
@@ -144,10 +140,10 @@
 
                     <!-- Comment Section -->
                     <div class="mb-3">
-                        <label for="comment" class="form-label">Comments</label>
+                        <label for="comment" class="form-label comment-heading">Comments</label>
                         <textarea class="form-control" name="review[comment]" id="comment" rows="4" placeholder="Write your comments here..." required></textarea>
                         <div class="invalid-feedback">
-                            Please add some valid feedback
+                            Please add some valid feedback.
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Submit</button>
@@ -157,20 +153,20 @@
 
         <!-- Reviews Section -->
         <% if(listing.reviews.length > 0) { %>
-            <div class="container mt-4 mb-4 p-4 bg-white rounded shadow-sm" style="max-width: 600px;">
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12 mt-4 mb-4 p-4 bg-white rounded shadow-sm review-section">
                 <h4 class="mb-3">Reviews</h4>
                 <% listing.reviews.forEach(function(review) { %>
                     <div class="review-item mb-3 p-3 border rounded">
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-bold">Rating:
-                                <% for (let i = 1; i <= 5; i++) { %>
-                                    <% if (i <= review.rating) { %>
-                                        <span style="color: #ffa723;">★</span>
-                                    <% } else { %>
-                                        <span>★</span>
-                                    <% } %>
-                                <% } %>
-                            </span>
+                    <span class="fw-bold">Rating:
+                        <% for (let i = 1; i <= 5; i++) { %>
+                            <% if (i <= review.rating) { %>
+                                <span style="color: #ffa723;">★</span>
+                            <% } else { %>
+                                <span style="color: #ccc;">★</span>
+                            <% } %>
+                        <% } %>
+                    </span>
                             <span class="text-muted small"><%= new Date(review.createdAt).toLocaleDateString() %></span>
                         </div>
                         <p class="mb-0"><%= review.comment %></p>
@@ -183,13 +179,12 @@
                     </div>
                 <% }); %>
             </div>
-            <hr>
         <% } %>
     </div>
 
     <!-- Map Section -->
     <div class="mt-4 mb-4">
         <h3 class="mb-3 text-center">Where you'll be</h3>
-        <div id="map" class="rounded shadow-sm mx-auto" style="width: 1000px; max-width: 100%; height: 500px;"></div>
+        <div id="map" class="rounded shadow-sm mx-auto" style="width: 850px; max-width: 100%; height: 400px;"></div>
     </div>
 </div>

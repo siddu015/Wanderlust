@@ -14,6 +14,10 @@
     padding: 0 !important;
 }
 
+card-body-show {
+    padding: 0 !important;
+}
+
 .card-text {
     font-weight: 400;
 }
@@ -32,8 +36,11 @@
 }
 
 @media (max-width: 768px) {
-    .card-body {
-        padding: 0.5rem !important;
+    .card-img-top {
+        padding: 0 0.5rem;
+    }
+        .card-body {
+        padding: 0.5rem 0.8rem !important;
     }
 
     .card-text {

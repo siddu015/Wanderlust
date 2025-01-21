@@ -1,56 +1,87 @@
 /* Footer */
+footer {
+    background-color: #ebebeb;
+    padding: 1.5rem 0; /* Adds top and bottom padding */
+    border-top: 1px solid #ddd; /* Optional separator line */
+}
+
+.f-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem; /* Space between sections */
+}
+
+.f-info-socials {
+    display: flex;
+    gap: 1rem; /* Space between icons */
+}
+
+.f-info-socials i {
+    font-size: 1.5rem;
+    color: #222222;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.f-info-socials i:hover {
+    color: #555555; /* Changes icon color on hover */
+    transform: scale(1.2); /* Enlarges icon smoothly */
+}
+
+.f-info-brand {
+    font-size: 1rem;
+    color: #333333;
+    font-weight: 600; /* Emphasizes brand name */
+}
+
+.f-info-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem; /* Space between links */
+}
+
 .f-info-links a {
     text-decoration: none;
     color: #222222;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
 }
 
 .f-info-links a:hover {
     text-decoration: underline;
+    color: #555555;
 }
 
-.f-info-links,
-.f-info-socials,
-.f-info-brand {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.f-info-socials i {
-    font-size: 1.2rem;
-    margin-right: 1rem;
-}
-
-.f-info {
-    height: 8rem;
-    text-align: center;
-    background-color: #ebebeb;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
     .f-info {
-        flex-direction: column;
-        text-align: center;
-        height: auto;
-        padding: 1rem;
+        flex-direction: column; /* Stacks sections vertically */
+        align-items: stretch; /* Adjusts alignment for smaller screens */
+        gap: 1rem; /* Reduces spacing between sections */
     }
 
     .f-info-socials {
-        margin-bottom: 0.5rem;
+        justify-content: center; /* Centers icons */
+        gap: 0.8rem; /* Adjusts icon spacing */
     }
 
     .f-info-socials i {
-        font-size: 1.5rem;
-        margin-right: 0.5rem;
+        font-size: 1.4rem; /* Slightly reduces icon size */
+    }
+
+    .f-info-links {
+        justify-content: center; /* Centers links */
+        gap: 0.8rem; /* Adjusts spacing */
     }
 
     .f-info-links a {
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
+        font-size: 0.9rem; /* Scales down font size */
+    }
+
+    .f-info-brand {
+        font-size: 0.95rem; /* Adjusts font size for smaller screens */
     }
 }

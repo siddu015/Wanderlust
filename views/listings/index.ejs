@@ -1,5 +1,6 @@
 <% layout("layouts/boilerplate") %>
 <body>
+<!-- Search Bar -->
     <div class="search">
         <div class="searchbar">
             <div class="search-container">
@@ -14,7 +15,7 @@
         </div>
     </div>
 
-
+<!-- Filters container -->
     <div id="filters-container">
         <div id="filters">
             <div class="filter">
@@ -82,6 +83,7 @@
         </div>
     </div>
 
+<!-- Listings Section -->
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
         <% for(let listing of allListings) { %>
             <a href="/listings/<%= listing._id %>" class="listing-link">
