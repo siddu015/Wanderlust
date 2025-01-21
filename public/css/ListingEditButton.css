@@ -1,4 +1,4 @@
-.editBtn {
+.ListingEditButton {
     width: 120px;
     height: 50px;
     border-radius: 20px;
@@ -17,7 +17,7 @@
     gap: 10px;
 }
 
-.editBtn::before {
+.ListingEditButton::before {
     content: "";
     width: 200%;
     height: 200%;
@@ -30,15 +30,15 @@
     filter: blur(10px);
 }
 
-.editBtn:hover::before {
+.ListingEditButton:hover::before {
     transform: scale(1);
 }
 
-.editBtn:hover {
+.ListingEditButton:hover {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
 }
 
-.editBtn svg {
+.ListingEditButton svg {
     height: 15px;
     fill: white;
     z-index: 3;
@@ -46,11 +46,11 @@
     transform-origin: bottom;
 }
 
-.editBtn:hover svg {
+.ListingEditButton:hover svg {
     transform: rotate(-15deg) translateX(5px);
 }
 
-.editBtn::after {
+.ListingEditButton::after {
     content: "";
     width: 40px;
     height: 1.5px;
@@ -65,7 +65,7 @@
     transition: transform 0.5s ease-out;
 }
 
-.editBtn:hover::after {
+.ListingEditButton:hover::after {
     transform: scaleX(1);
     left: 0px;
     transform-origin: right;
@@ -73,7 +73,7 @@
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .editBtn {
+    .ListingEditButton {
         width: 100px;
         height: 40px;
         font-size: 0.9rem;
@@ -81,18 +81,18 @@
         border-radius: 15px;
     }
 
-    .editBtn svg {
+    .ListingEditButton svg {
         height: 12px;
     }
 
-    .editBtn::after {
+    .ListingEditButton::after {
         width: 30px;
         bottom: 12px;
     }
 }
 
 @media (max-width: 480px) {
-    .editBtn {
+    .ListingEditButton {
         width: 80px;
         height: 35px;
         font-size: 0.8rem;
@@ -100,11 +100,11 @@
         border-radius: 12px;
     }
 
-    .editBtn svg {
+    .ListingEditButton svg {
         height: 10px;
     }
 
-    .editBtn::after {
+    .ListingEditButton::after {
         width: 25px;
         bottom: 10px;
     }

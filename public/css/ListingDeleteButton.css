@@ -1,4 +1,4 @@
-.button {
+.ListingDeleteButton {
     --main-focus: #2d8cf0;
     --font-color: #323232;
     --bg-color-sub: #dedede;
@@ -20,19 +20,19 @@
     transition: all 0.3s;
 }
 
-.button,
-.button__icon,
-.button__text {
+.ListingDeleteButton,
+.ListingDeleteButton__icon,
+.ListingDeleteButton__text {
     transition: all 0.3s;
 }
 
-.button .button__text {
+.ListingDeleteButton .ListingDeleteButton__text {
     transform: translateX(13px);
     color: var(--font-color);
     font-weight: 600;
 }
 
-.button .button__icon {
+.ListingDeleteButton .ListingDeleteButton__icon {
     position: absolute;
     transform: translateX(71px);
     height: 100%;
@@ -44,82 +44,82 @@
     z-index: 0;
 }
 
-.button .svg {
+.ListingDeleteButton .svg {
     width: 20px;
     fill: var(--main-color);
 }
 
-.button:hover {
+.ListingDeleteButton:hover {
     background-color: var(--bg-color-sub);
     border-color: var(--main-focus);
 }
 
-.button:hover .button__text {
+.ListingDeleteButton:hover .ListingDeleteButton__text {
     color: transparent;
 }
 
-.button:hover .button__icon {
+.ListingDeleteButton:hover .ListingDeleteButton__icon {
     width: 108px;
     transform: translateX(0);
 }
 
-.button:active {
+.ListingDeleteButton:active {
     transform: translate(3px, 3px);
     box-shadow: 0px 0px var(--main-color);
 }
 
 @media (max-width: 768px) {
-    .button {
+    .ListingDeleteButton {
         width: 100px;
         height: 37px;
         border-radius: 8px;
         box-shadow: 3px 3px var(--main-color);
     }
 
-    .button .button__text {
+    .ListingDeleteButton .ListingDeleteButton__text {
         font-size: 0.9rem;
         transform: translateX(10px);
     }
 
-    .button .button__icon {
+    .ListingDeleteButton .ListingDeleteButton__icon {
         transform: translateX(60px);
         width: 35px;
     }
 
-    .button:hover .button__icon {
+    .ListingDeleteButton:hover .ListingDeleteButton__icon {
         width: 100px;
         transform: translateX(0);
     }
 
-    .button .svg {
+    .ListingDeleteButton .svg {
         width: 18px;
     }
 }
 
 @media (max-width: 480px) {
-    .button {
+    .ListingDeleteButton {
         width: 90px;
         height: 32px;
         border-radius: 6px;
         box-shadow: 2px 2px var(--main-color);
     }
 
-    .button .button__text {
+    .ListingDeleteButton .ListingDeleteButton__text {
         font-size: 0.8rem;
         transform: translateX(8px);
     }
 
-    .button .button__icon {
+    .ListingDeleteButton .ListingDeleteButton__icon {
         transform: translateX(55px);
         width: 30px;
     }
 
-    .button:hover .button__icon {
+    .ListingDeleteButton:hover .ListingDeleteButton__icon {
         width: 88px;
         transform: translateX(0);
     }
 
-    .button .svg {
+    .ListingDeleteButton .svg {
         width: 16px;
     }
 }

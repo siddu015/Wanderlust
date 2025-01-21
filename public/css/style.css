@@ -5,10 +5,10 @@
 @import "showListing.css";
 @import "filters.css";
 @import "taxesButton.css";
-@import "rating.css";
+@import "review.css";
 @import "loginPages.css";
-@import "editButton.css";
-@import "deleteButton.css";
+@import "ListingEditButton.css";
+@import "ListingDeleteButton.css";
 
 
 /* Global Styles */
