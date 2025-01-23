@@ -1,14 +1,17 @@
-@import "searchbar.css";
+@import "Index/searchbar.css";
 @import "navbar.css";
 @import "footer.css";
-@import "cardComponent.css";
-@import "showListing.css";
-@import "filters.css";
-@import "taxesButton.css";
-@import "review.css";
-@import "loginPages.css";
-@import "ListingEditButton.css";
-@import "ListingDeleteButton.css";
+@import "Index/cardComponent.css";
+@import "ShowListing/showListing.css";
+@import "Index/filters.css";
+@import "Index/taxesButton.css";
+@import "ShowListing/review.css";
+@import "ShowListing/ListingEditButton.css";
+@import "ShowListing/ListingDeleteButton.css";
+@import "Profile/logoutButton.css";
+@import "Profile/profileEditButton.css";
+@import "Profile/profilePic.css";
+@import "Profile/seeYourListingsButton.css";
 
 
 /* Global Styles */

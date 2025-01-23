@@ -1,8 +1,8 @@
 .ListingDeleteButton {
-    --main-focus: #2d8cf0;
-    --font-color: #323232;
-    --bg-color-sub: #dedede;
-    --bg-color: #eee;
+    --main-focus: rgba(0, 0, 0, 0.62);
+    --font-color: rgb(255, 255, 255);
+    --bg-color-sub: rgba(255, 66, 66,0.9);
+    --bg-color: rgba(255, 65, 65, 0.9);
     --main-color: #323232;
 
     position: relative;
@@ -34,7 +34,7 @@
 
 .ListingDeleteButton .ListingDeleteButton__icon {
     position: absolute;
-    transform: translateX(71px);
+    transform: translateX(76px);
     height: 100%;
     width: 39px;
     background-color: var(--bg-color-sub);
@@ -59,7 +59,7 @@
 }
 
 .ListingDeleteButton:hover .ListingDeleteButton__icon {
-    width: 108px;
+    width: 112px;
     transform: translateX(0);
 }
 
