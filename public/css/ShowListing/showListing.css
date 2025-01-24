@@ -12,4 +12,36 @@
 }
 
 
+/* Reusable title styling */
+.section-title {
+    font-size: 2.3rem; /* Adjust for responsiveness */
+    font-weight: 700;
+    color: #234567;
+    text-align: center; /* Optional for consistent alignment */
+    margin-bottom: 1.5rem;
+}
 
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 1.4rem;
+    }
+}
