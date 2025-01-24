@@ -1,0 +1,145 @@
+.custom-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start; /* Align text to the left */
+    /*background-color: #linear-gradient(45deg, rgba(16, 137, 211, 0.7) 0%, rgba(18, 177, 209, 0.6) 100%); !* bg-sky-800 *!*/
+    /*color: #f9fafb; !* text-gray-50 *!*/
+    font-size: 1rem; /* text-base */
+    font-weight: bold;
+    border: 2px solid transparent;
+    border-radius: 0.75rem; /* rounded-lg */
+    height: 4rem; /* h-16 */
+    width: 16rem; /* w-64 */
+    padding: 0.75rem;
+    text-align: left;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.custom-button::before,
+.custom-button::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(8px);
+    transition: all 0.5s ease;
+}
+
+.custom-button::before {
+    width: 3rem; /* Small circle */
+    height: 3rem;
+    background-color: #38bdf8; /* Initial sky blue */
+    top: 0.25rem;
+    right: 0.5rem;
+    z-index: 0;
+}
+
+.custom-button::after {
+    width: 5rem; /* Larger circle */
+    height: 5rem;
+    background-color: #06b6d4; /* Initial cyan */
+    top: 1rem;
+    right: 2rem;
+    z-index: 0;
+}
+
+.custom-button:hover {
+    color: #1e3a8a; /* hover:text-sky-900 */
+    text-decoration: underline;
+    text-underline-offset: 0.5rem; /* hover:underline-offset-4 */
+    border-color: #38bdf8; /* hover:border-sky-300 */
+}
+
+.custom-button:hover::before {
+    width: 3rem; /* Larger small circle */
+    height: 3rem;
+    top: 2rem; /* Moves slightly down */
+    right: 4rem; /* Moves left of the larger circle */
+    filter: blur(0); /* Removes blur */
+}
+
+.custom-button:hover::after {
+    width: 8rem; /* Larger big circle */
+    height: 8rem;
+    top: -0.4rem; /* Keeps position slightly higher */
+    right: -2.5rem; /* Moves mostly off-screen to show only a quarter */
+    filter: blur(0); /* Removes blur */
+}
+
+@media (max-width: 768px) {
+    .custom-button {
+        width: 12rem; /* Smaller button on smaller screens */
+        height: 3.5rem; /* Slightly reduced height */
+        font-size: 0.9rem; /* Smaller text */
+        padding: 0.5rem; /* Less padding */
+    }
+
+    .custom-button::before {
+        width: 2.5rem; /* Smaller small circle */
+        height: 2.5rem;
+        top: 0.2rem;
+        right: 0.3rem;
+    }
+
+    .custom-button::after {
+        width: 4.5rem; /* Smaller larger circle */
+        height: 4.5rem;
+        top: 0.7rem;
+        right: 1.5rem;
+    }
+
+    .custom-button:hover::before {
+        width: 2.5rem; /* Smaller circle on hover */
+        height: 2.5rem;
+        top: 1.5rem; /* Moves slightly down */
+        right: 3.5rem;
+    }
+
+    .custom-button:hover::after {
+        width: 7rem; /* Smaller hover circle */
+        height: 7rem;
+        top: -0.3rem;
+        right: -2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-button {
+        width: 10rem; /* Further smaller button */
+        height: 3rem; /* Further reduced height */
+        font-size: 0.8rem; /* Even smaller text */
+        padding: 0.25rem; /* Minimal padding */
+    }
+
+    .custom-button::before {
+        width: 2rem; /* Even smaller small circle */
+        height: 2rem;
+        top: 0.2rem;
+        right: 0.2rem;
+    }
+
+    .custom-button::after {
+        width: 3.5rem; /* Even smaller larger circle */
+        height: 3.5rem;
+        top: 0.5rem;
+        right: 1rem;
+    }
+
+    .custom-button:hover::before {
+        width: 2rem; /* Smaller circle on hover */
+        height: 2rem;
+        top: 1.2rem; /* Moves slightly down */
+        right: 3rem;
+    }
+
+    .custom-button:hover::after {
+        width: 6rem; /* Even smaller hover circle */
+        height: 6rem;
+        top: -0.2rem;
+        right: -1.5rem;
+    }
+}

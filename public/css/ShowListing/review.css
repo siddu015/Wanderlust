@@ -1,0 +1,208 @@
+
+/* Star Rating CSS */
+.rating:not(:checked) > input {
+    position: absolute;
+    appearance: none;
+}
+
+.rating:not(:checked) > label {
+    float: right;
+    cursor: pointer;
+    font-size: 30px;
+    color: #666;
+}
+
+.rating:not(:checked) > label:before {
+    content: '★';
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #e58e09;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #ff9e0b;
+}
+
+.rating > input:checked ~ label {
+    color: #ffa723;
+}
+
+@media (max-width: 768px) {
+    .rating > label {
+        font-size: 25px;
+    }
+}
+
+
+/* Reviews Section */
+.review-item {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.review-item .fw-bold {
+    font-size: 1rem;
+}
+
+.review-item p {
+    margin-bottom: 0.5rem;
+}
+
+.review-item button {
+    font-size: 0.8rem;
+}
+
+.comment-heading {
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .review-form, .review-section {
+        padding: 1rem;
+    }
+
+    .review-form h4, .review-section h4 {
+        font-size: 1.25rem;
+    }
+
+    .rating label {
+        font-size: 25px;
+    }
+
+    .review-item {
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .review-item .fw-bold {
+        font-size: 0.95rem;
+    }
+
+    .comment-heading {
+        font-size: 0.8rem;
+    }
+}
+
+
+
+/* Review Delete Button */
+.review-delete-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: relative;
+    gap: 2px;
+}
+
+.svgIcon {
+    width: 10px;
+    transition-duration: 0.3s;
+}
+
+.svgIcon path {
+    fill: white;
+}
+
+.review-delete-button:hover {
+    transition-duration: 0.3s;
+    background-color: rgb(255, 69, 69);
+    align-items: center;
+    gap: 0;
+}
+
+/* Rotate top icon */
+.review-bin-top {
+    transform-origin: bottom right;
+}
+
+.review-delete-button:hover .review-bin-top {
+    transition-duration: 0.5s;
+    transform: rotate(160deg);
+}
+
+
+
+/*Review Submit Button*/
+.review-submit-button {
+    font-family: inherit;
+    font-size: 0.9rem;
+    background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .review-submit-button {
+        font-size: 0.8rem;
+        border-radius: 15px;
+    }
+
+    .review-submit-button svg {
+        width: 10px;
+    }
+}
+
+.review-submit-button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+
+.review-submit-button svg {
+    width: 1rem;
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.review-submit-button:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.review-submit-button:hover svg {
+    transform: translateX(1.6em) rotate(45deg) scale(1.1);
+}
+
+.review-submit-button:hover span {
+    transform: translateX(5em);
+}
+
+.review-submit-button:active {
+    transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+    from {
+        transform: translateY(0.1em);
+    }
+
+    to {
+        transform: translateY(-0.1em);
+    }
+}

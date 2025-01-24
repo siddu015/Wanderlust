@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <div class="container">
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4"> <!-- Added g-4 for spacing -->
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
         <% if (allListings.length > 0) { %>
             <% for (let listing of allListings) { %>
                 <div class="col">
                     <a href="/listings/<%= listing._id %>" class="listing-link">
-                        <div class="card h-100"> <!-- Added h-100 for uniform card height -->
-                            <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="object-fit: cover; height: 20rem;" /> <!-- Added object-fit -->
+                        <div class="card">
+                            <img src="<%= listing.images[0].url %>" class="card-img-top" alt="listing_image" style="height: 20rem;" />
                             <div class="card-body">
                                 <p class="card-text">
                                     <b><%= listing.title %></b><br />
@@ -27,3 +27,28 @@
         <% } %>
     </div>
 </div>
+
+<style>
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .col {
+        flex: 1 1 100%; /* Makes each card take full width at small screen sizes */
+    }
+
+    @media (min-width: 576px) {
+        .col {
+            flex: 1 1 48%; /* Adjust cards to take ~50% width on medium screens */
+        }
+    }
+
+    @media (min-width: 768px) {
+        .col {
+            flex: 1 1 32%; /* Adjust cards to take ~33% width on larger screens */
+        }
+    }
+</style>
+
+
