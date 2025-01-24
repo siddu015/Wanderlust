@@ -17,6 +17,7 @@
     gap: 10px;
 }
 
+
 .ListingEditButton::before {
     content: "";
     width: 200%;

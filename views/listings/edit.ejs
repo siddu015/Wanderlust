@@ -34,7 +34,7 @@
         </div>
 
         <!-- Upload Images -->
-        <h6 style="margin-bottom: 10px; margin-left: 5px; font-weight: 200;">Upload Your Home Images</h6>
+        <h6 class="upload-heading" >Upload Your Home Images</h6>
         <div class="folder-container">
             <div class="folder">
                 <div class="front-side">
@@ -125,6 +125,24 @@
         margin-bottom: -10px;
     }
 
+    @media (max-width: 768px) {
+        .heading {
+            font-size: 22px;
+        }
+    }
+
+    .upload-heading {
+        margin-bottom: 2.2rem;
+        margin-left: 5px;
+        font-weight: 200;
+    }
+
+    @media (max-width: 768px) {
+        .upload-heading {
+            margin-top: 1rem;
+        }
+    }
+
     .inputGroup {
         font-family: 'Segoe UI', sans-serif;
         margin: 1.5em 0;
@@ -166,12 +184,25 @@
         position: relative;
     }
 
+    @media (max-width: 768px) {
+        .folder-container {
+            --folder-W: 80px;
+            --folder-H: 60px;
+        }
+    }
+
     .folder {
         position: absolute;
         top: -20px;
         left: calc(50% - 60px);
         animation: float 2.5s infinite ease-in-out;
         transition: transform var(--transition) ease;
+    }
+
+    @media (max-width: 768px) {
+        .folder {
+            left: calc(50% - 40px);
+        }
     }
 
     .folder:hover {
@@ -251,6 +282,13 @@
         position: relative;
     }
 
+    @media (max-width: 768px) {
+        .custom-file-upload {
+            font-size: 0.9em;
+            padding: 5px 25px;
+        }
+    }
+
     .custom-file-upload:hover {
         background: rgba(255, 255, 255, 0.4);
     }
@@ -288,6 +326,13 @@
         overflow: hidden;
         transition: all 0.2s;
         cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        button {
+            font-size: 0.9rem;
+            border-radius: 15px;
+        }
     }
 
     button span {

@@ -38,8 +38,9 @@ card-body-show {
 @media (max-width: 768px) {
     .card-img-top {
         padding: 0 0.5rem;
+        border-radius: 1.8rem !important;
     }
-        .card-body {
+    .card-body {
         padding: 0.5rem 0.8rem !important;
     }
 

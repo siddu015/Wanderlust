@@ -133,24 +133,37 @@ footer {
 @media (max-width: 768px) {
     .f-info {
         display: flex;
-        gap: 1.5rem;
         flex-direction: column;
+        align-items: center;
     }
 
     .wrapper {
         gap: 1rem; /* Adjusted spacing for smaller screens */
+        justify-content: center;
     }
 
     .wrapper .icon {
-        width: 30px;
+        width: 30px; /* Slightly smaller size for icons */
         height: 30px;
+        font-size: 16px; /* Adjusted font size */
     }
 
     .f-info-links a {
-        font-size: 0.9rem;
+        font-size: 0.9rem; /* Slightly larger font for better readability */
     }
 
     .f-info-brand {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        text-align: center; /* Centered text on smaller screens */
+    }
+
+    /* Making the icons responsive within the footer */
+    .wrapper {
+        gap: 0.8rem; /* Reduced gap for icons to look better on smaller screens */
+    }
+
+    /* Adjust padding and margins for better spacing */
+    footer {
+        padding: 1rem 2rem; /* Reduced padding for smaller screens */
     }
 }
