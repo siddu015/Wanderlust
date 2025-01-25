@@ -12,8 +12,8 @@ passport.use(
             try {
                 const query = {
                     $or: [
-                        { email: loginField }, // Match by email
-                        { username: loginField }, // Match by username
+                        { email: loginField },
+                        { username: loginField },
                     ],
                 };
 
