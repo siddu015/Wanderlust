@@ -28,12 +28,12 @@ const userSchema = new Schema({
     },
     googleId: {
         type: String,
-        unique: true,
     },
     googleProfilePic: {
         type: String,
     },
 });
+
 
 userSchema.plugin(passportLocalMongoose);
 
@@ -50,7 +50,7 @@ userSchema.statics.findOrCreateGoogleUser = async function(profile, done) {
             firstname: profile.name.givenName,
             lastname: profile.name.familyName,
             email: profile.emails[0].value,
-            googleId: profile.id,
+            googleId: profile.id,  // Only set googleId for Google users
             googleProfilePic: profile.photos[0].value,
         });
 

@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Listing = require('../models/listing');
+const { v4: uuidv4 } = require("uuid");
 
 // Show Signup Form
 module.exports.renderSignupForm = (req, res) => {
@@ -34,8 +35,19 @@ module.exports.signup = async (req, res, next) => {
             return res.redirect("/signup");
         }
 
-        // Register new user
-        const newUser = new User({ firstname, lastname, email, phoneNo, username });
+        // Generate a random unique ID for users signing up normally
+        const googleId = uuidv4();  // Generate a unique ID
+
+        // Register new user (googleId is now unique for normal signup)
+        const newUser = new User({
+            firstname,
+            lastname,
+            email,
+            phoneNo,
+            username,
+            googleId,  // Assign the generated unique ID here
+        });
+
         const registeredUser = await User.register(newUser, password);
         req.login(registeredUser, (err) => {
             if (err) return next(err);
