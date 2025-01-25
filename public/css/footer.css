@@ -167,3 +167,69 @@ footer {
         padding: 1rem 2rem; /* Reduced padding for smaller screens */
     }
 }
+
+@media (max-width: 768px) {
+    .f-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .wrapper {
+        gap: 1rem; /* Adjusted spacing for smaller screens */
+        justify-content: center;
+    }
+
+    .wrapper .icon {
+        width: 30px; /* Slightly smaller size for icons */
+        height: 30px;
+        font-size: 16px; /* Adjusted font size */
+    }
+
+    .f-info-links a {
+        font-size: 0.9rem; /* Slightly larger font for better readability */
+    }
+
+    .f-info-brand {
+        font-size: 0.9rem;
+        text-align: center; /* Centered text on smaller screens */
+    }
+
+    /* Making the icons responsive within the footer */
+    .wrapper {
+        gap: 0.8rem; /* Reduced gap for icons to look better on smaller screens */
+    }
+
+    /* Adjust padding and margins for better spacing */
+    footer {
+        padding: 1rem 2rem; /* Reduced padding for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    footer {
+        padding: 0.6rem 1rem; /* Extra compact padding for small screens */
+    }
+
+    .wrapper {
+        gap: 0.4rem; /* Tighter gap for icons */
+    }
+
+    .wrapper .icon {
+        width: 20px; /* Further reduced size */
+        height: 20px;
+        font-size: 10px; /* Smaller font size for icons */
+    }
+
+    .f-info {
+        gap: 0.5rem; /* Minimal spacing for mobile */
+    }
+
+    .f-info-links a {
+        font-size: 0.75rem; /* Smaller font size for links */
+    }
+
+    .f-info-brand {
+        font-size: 0.75rem; /* Compact brand text */
+    }
+}

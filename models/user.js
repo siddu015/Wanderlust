@@ -33,13 +33,6 @@ const userSchema = new Schema({
     googleProfilePic: {
         type: String,
     },
-    facebookId: {
-        type: String,
-        unique: true,
-    },
-    facebookProfilePic: {
-        type: String,
-    },
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -59,29 +52,6 @@ userSchema.statics.findOrCreateGoogleUser = async function(profile, done) {
             email: profile.emails[0].value,
             googleId: profile.id,
             googleProfilePic: profile.photos[0].value,
-        });
-
-        return done(null, newUser);
-    } catch (error) {
-        done(error, null);
-    }
-};
-
-// Function to find or create user via Facebook OAuth
-userSchema.statics.findOrCreateFacebookUser = async function(profile, done) {
-    try {
-        const existingUser = await this.findOne({ facebookId: profile.id });
-
-        if (existingUser) {
-            return done(null, existingUser);
-        }
-
-        const newUser = await this.create({
-            firstname: profile.name.givenName || profile.name.firstName, // Facebook API may provide different name formats
-            lastname: profile.name.familyName || profile.name.lastName,
-            email: profile.emails[0].value,
-            facebookId: profile.id,
-            facebookProfilePic: `https://graph.facebook.com/${profile.id}/picture?type=large`, // Get profile picture URL from Facebook API
         });
 
         return done(null, newUser);

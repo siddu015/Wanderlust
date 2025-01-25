@@ -13,38 +13,40 @@ module.exports.signup = async (req, res, next) => {
 
         // Check for existing user by email, username, or phone number
         const existingUserByEmail = await User.findOne({ email });
-        const existingUserByUsername = await User.findOne({ username });
-        const existingUserByPhoneNo = await User.findOne({ phoneNo });
-
         if (existingUserByEmail) {
             req.flash("error", "Email already in use. Please try another.");
-            return res.redirect("/signup");
+            return res.redirect("/signup"); // Ensure return to prevent further execution
         }
+
+        const existingUserByUsername = await User.findOne({ username });
         if (existingUserByUsername) {
             req.flash("error", "Username already taken. Please try another.");
-            return res.redirect("/signup");
+            return res.redirect("/signup"); // Ensure return to prevent further execution
         }
+
+        const existingUserByPhoneNo = await User.findOne({ phoneNo });
         if (existingUserByPhoneNo) {
             req.flash("error", "Phone number already in use. Please try another.");
-            return res.redirect("/signup");
+            return res.redirect("/signup"); // Ensure return to prevent further execution
         }
 
         if (password !== confirmPassword) {
             req.flash("error", "Passwords do not match!");
-            return res.redirect("/signup");
+            return res.redirect("/signup"); // Ensure return to prevent further execution
         }
 
         // Register new user
         const newUser = new User({ firstname, lastname, email, phoneNo, username });
         const registeredUser = await User.register(newUser, password);
+
         req.login(registeredUser, (err) => {
             if (err) return next(err);
             req.flash("success", "Welcome to Wanderlust!");
-            res.redirect("/listings");
+            return res.redirect("/listings");
         });
     } catch (e) {
         req.flash("error", e.message);
-        res.redirect("/signup");
+        return res.redirect("/signup");
     }
 };
 

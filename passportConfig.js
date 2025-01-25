@@ -1,7 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require("./models/user");
 
 // Local Strategy Configuration
@@ -10,6 +9,10 @@ passport.use(
         { usernameField: "loginField", passwordField: "password" },
         async (loginField, password, done) => {
             try {
+                if (!loginField || !password) {
+                    return done(null, false, { message: "Invalid login credentials." });
+                }
+
                 const query = {
                     $or: [
                         { email: loginField },
@@ -17,9 +20,9 @@ passport.use(
                     ],
                 };
 
-                // Add phone number check only if `loginField` is numeric
+                // Only check phoneNo if loginField is numeric
                 if (!isNaN(loginField)) {
-                    query.$or.push({ phoneNo: Number(loginField) });
+                    query.$or.push({ phoneNo: loginField });
                 }
 
                 const user = await User.findOne(query);
@@ -28,14 +31,15 @@ passport.use(
                     return done(null, false, { message: "Invalid login credentials." });
                 }
 
-                const isMatch = await user.authenticate(password);
-
-                if (!isMatch) {
-                    return done(null, false, { message: "Invalid login credentials." });
+                // Authenticate using passport-local-mongoose's method
+                const { user: authenticatedUser, error } = await User.authenticate()(user.username, password);
+                if (error || !authenticatedUser) {
+                    return done(null, false, { message: "Incorrect password." });
                 }
 
-                return done(null, user);
+                return done(null, authenticatedUser);
             } catch (err) {
+                console.error("Error during authentication:", err);
                 return done(err);
             }
         }
