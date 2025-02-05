@@ -19,8 +19,8 @@ const userRouter = require("./routes/user.js");
 const authRouter = require("./routes/authRoutes.js");
 
 const port = 8080;
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
-let dbUrl = process.env.ATLASDB_URL
+const mongoUrl = process.env.MONGO_URL;       // Testing
+let dbUrl = process.env.ATLASDB_URL           // Production
 
 main()
     .then(() => {
@@ -31,7 +31,7 @@ main()
     });
 
 async function main() {
-    await mongoose.connect(dbUrl);
+    await mongoose.connect(mongoUrl);
 }
 
 app.use(express.urlencoded({ extended: true }));
@@ -87,12 +87,12 @@ app.all("*", (req, res, next) => {
 });
 
 // Error handling
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
     let { statusCode = 500, message = "Something went wrong!" } = err;
     res.status(statusCode).render("error.ejs", { message });
 });
 
 // Patch Route
 app.listen(port, () => {
-    console.log(port, "is running");
+    console.log(`Server is running on http://localhost:${port}/`);
 });
