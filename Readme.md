@@ -1,6 +1,7 @@
 # Wanderlust
 
 Wanderlust is a platform where users can rent out their locations. Users can log in manually or via Google, manage their profiles, upload pictures, and create listings with map integration. The platform ensures user authentication, and the ability to add, modify, or delete reviews and listings. The project includes a complete UI/UX design, frontend, backend, and production deployment.
+Check Out 
 
 ---
 
