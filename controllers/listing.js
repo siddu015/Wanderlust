@@ -6,30 +6,59 @@ const {cloudinary} = require("../cloudConfig");
 
 
 module.exports.index = async (req, res) => {
-    const { q } = req.query;
-    let allListings;
+    const { category, location, q } = req.query;
+    let query = {};
+
+    if (category) query.category = category;
+
+    if (location) {
+        query.location = { $regex: new RegExp(location, 'i') };
+    }
 
     if (q) {
-        allListings = await Listing.find({
-            $or: [
-                { title: { $regex: q, $options: "i" } },
-                { category: { $regex: q, $options: "i" } },
-                { location: { $regex: q, $options: "i" } },
-            ],
-        }).limit(10);
-    } else {
-        allListings = await Listing.find({});
+        if (Object.keys(query).length > 0) {
+            query = {
+                $and: [
+                    query,
+                    {
+                        $or: [
+                            { title: { $regex: q, $options: "i" } },
+                            { category: { $regex: q, $options: "i" } },
+                            { location: { $regex: q, $options: "i" } },
+                        ]
+                    }
+                ]
+            };
+        } else {
+            query = {
+                $or: [
+                    { title: { $regex: q, $options: "i" } },
+                    { category: { $regex: q, $options: "i" } },
+                    { location: { $regex: q, $options: "i" } },
+                ]
+            };
+        }
     }
+
+    const allListings = await Listing.find(query);
 
     if (req.xhr) {
-        const suggestions = allListings.map(listing => ({
-            title: listing.title,
-            price: listing.price,
-            url: `/listings/${listing._id}`,
-        }));
-        return res.json(suggestions);
+        // If it's an AJAX request for search suggestions
+        if (q && !category && !location && req.headers.accept && req.headers.accept.includes('application/json')) {
+            const suggestions = allListings.map(listing => ({
+                title: listing.title,
+                price: listing.price,
+                url: `/listings/${listing._id}`,
+            }));
+            return res.json(suggestions);
+        }
+
+        // If it's an AJAX request for filtered listings, return only the listing cards
+        // This ensures we don't replace the whole container structure
+        return res.render("listings/filter.ejs", { allListings });
     }
 
+    // For normal page loads, render the full page
     res.render("listings/index.ejs", { allListings });
 };
 
