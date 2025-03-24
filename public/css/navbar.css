@@ -1,57 +1,84 @@
-/* Navbar */
 .navbar {
     height: 5rem;
-    background-color: white;
-    transition: background-color 0.3s ease; /* Smooth transition */
+    background-color: #ffffff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .navbar-collapse.collapse.show {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: rgba(0, 0, 0, 0.62);
-    padding: 0.5rem;
+    background-color: #ffffff;
+    padding: 1rem;
     margin-top: 0.25rem;
-}
-
-.profile_link {
-    font-size: 1rem;
-    text-decoration: none;
-    color: black;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 0 0 10px 10px;
 }
 
 .navbar-brand {
-    margin-right: 1rem;
+    margin-right: 2rem;
     display: flex;
-    flex-direction:row;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
-    font-weight: 100;
+    gap: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    transition: color 0.3s ease;
 }
 
 .navbar-brand img {
-    max-height: 1.5rem; /* Adjust height */
-    width: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensure the image fits well */
-    display: block; /* Prevent inline spacing issues */
+    max-height: 1.8rem;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #007bff;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.1);
 }
 
 .navbar-nav {
     display: flex;
-    flex-direction: row;
     align-items: center;
+    /*gap: rem; !* Increased from 2rem to 2.5rem for more space *!*/
+}
+
+.airyourhome,
+.profile_link {
+    font-size: 1rem;
+    text-decoration: none;
+    color: #333333;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    /*margin-right: 1rem;*/
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 }
 
 .airyourhome {
-    font-size: 1rem;
-    text-decoration: none;
-    color: black;
-    margin-right: 1rem;
+    margin-right: 0.5rem; /* Added extra margin to increase space before login */
 }
 
-/* Login Button */
+.airyourhome:hover,
+.profile_link:hover {
+    color: #007bff;
+    background-color: rgba(0, 123, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.profile_link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .login-button {
     margin-top: 0.2rem;
     margin-right: 1rem;
@@ -98,100 +125,49 @@
     transform: scale(100) translateX(2px);
 }
 
-
-/* Media Queries for smaller screens */
 @media (max-width: 991px) {
-
     .navbar-nav {
-        display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: flex-start;
+        padding: 1rem 0;
+        gap: 1rem;
     }
 
+    .airyourhome,
     .profile_link {
-        font-size: 1rem;
-        padding: 0.5rem 0;
+        padding: 0.75rem 0;
+        border-radius: 0;
     }
 
     .airyourhome {
-        font-size: 1rem;
-        margin: 0;
-        padding: 0.5rem 0;
-
+        margin-right: 0; /* Reset margin for mobile */
     }
 
-    .login-button {
-        height: 40px; /* Reduced height */
-        width: 120px; /* Reduced width */
-        border-radius: 20px; /* Adjusted border radius */
-        font-size: 0.8rem; /* Reduced font size for text */
-        padding: 0.5rem;
-        margin: 0;
-        margin-top: 0.4rem;
-    }
-
-    .login-btn-txt {
-        letter-spacing: 2px; /* Decreased letter spacing */
-    }
-
-    .login-button:hover {
-        background-color: #000; /* Force black hover */
-        color: #fff; /* Keep text white for contrast */
-    }
-
-    .login-button:hover {
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    .navbar-collapse.collapse.show {
+        padding: 1rem;
     }
 }
 
 @media (max-width: 768px) {
-
-    .airyourhome {
-        font-size: 0.9rem;
-    }
-
-    .profile_link {
-        font-size: 0.9rem;
-    }
-
     .navbar {
         height: 4rem;
     }
 
-
-    .login-button {
-        height: 38px; /* Reduced height */
-        width: 100px; /* Reduced width */
-        border-radius: 20px; /* Adjusted border radius */
-        font-size: 0.8rem; /* Reduced font size for text */
-    }
-
-    .login-btn-txt {
-        letter-spacing: 2px; /* Decreased letter spacing */
-    }
-
-    .login-button:hover {
-        background-color: #000; /* Force black hover */
-        color: #fff; /* Keep text white for contrast */
-    }
-
-    .login-button:hover {
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-    }
-
     .navbar-brand {
         margin-right: 1rem;
-        gap: 0.7rem;
+        gap: 0.8rem;
+    }
+
+    .navbar-brand img {
+        max-height: 1.5rem;
     }
 
     .navbar-brand .title {
         font-size: 1rem;
     }
-    /* Image inside navbar-brand */
-    .navbar-brand img {
-        max-height: 1.2rem; /* Adjust height */
-        width: auto; /* Maintain aspect ratio */
-        object-fit: contain; /* Ensure the image fits well */
-        display: block; /* Prevent inline spacing issues */
+
+    .airyourhome,
+    .profile_link {
+        font-size: 0.95rem;
     }
 }
