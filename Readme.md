@@ -4,7 +4,6 @@ Wanderlust is a platform where users can rent out their locations. Users can log
 
 **Check Out live**: [**Wanderlust**](https://wandelast.onrender.com/)
 
----
 
 ## Features
 
@@ -36,6 +35,18 @@ Wanderlust is a platform where users can rent out their locations. Users can log
 - **Image Upload**: Cloudinary.
 - **Map Integration**: Mapbox.
 - **Environment Management**: `.env` file.
+
+---
+
+##Screenshots
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img width="45%" alt="Image 1" src="https://github.com/user-attachments/assets/daadda35-fb3d-4e08-85ca-9dcca4da4a2c" />
+  <img width="45%" alt="Image 2" src="https://github.com/user-attachments/assets/02679a83-6ffe-484e-81e6-aa4cc00258ac" />
+  <img width="45%" alt="Image 3" src="https://github.com/user-attachments/assets/cda83ddb-38aa-4aa3-8d4c-01c032aa0da6" />
+  <img width="45%" alt="Image 4" src="https://github.com/user-attachments/assets/b1c0dad4-a479-4487-ae1c-2801c5a80df7" />
+  <img width="45%" alt="Image 5" src="https://github.com/user-attachments/assets/b5d470f7-d0e8-44ce-92a5-348e2b399cec" />
+  <img width="45%" alt="Image 6" src="https://github.com/user-attachments/assets/ac5aecee-f3b4-4578-b1b9-4dbc16570eec" />
+</div>
 
 ---
 
