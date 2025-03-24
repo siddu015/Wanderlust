@@ -5,21 +5,32 @@ const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 const {cloudinary} = require("../cloudConfig");
 
 
-//All listings
 module.exports.index = async (req, res) => {
-    const { category, location } = req.query;
-    let query = {};
+    const { q } = req.query;
+    let allListings;
 
-    if (category) query.category = category;
-    if (location) query.location = { $regex: new RegExp(location, 'i') }; // Case-insensitive location search
-
-    const allListings = await Listing.find(query);
-
-    if (!category && !location) {
-        res.render("listings/index.ejs", { allListings });
+    if (q) {
+        allListings = await Listing.find({
+            $or: [
+                { title: { $regex: q, $options: "i" } },
+                { category: { $regex: q, $options: "i" } },
+                { location: { $regex: q, $options: "i" } },
+            ],
+        }).limit(10);
     } else {
-        res.render("listings/filter.ejs", { allListings });
+        allListings = await Listing.find({});
     }
+
+    if (req.xhr) {
+        const suggestions = allListings.map(listing => ({
+            title: listing.title,
+            price: listing.price,
+            url: `/listings/${listing._id}`,
+        }));
+        return res.json(suggestions);
+    }
+
+    res.render("listings/index.ejs", { allListings });
 };
 
 //Form to create a new Listing
