@@ -31,7 +31,7 @@ main()
     });
 
 async function main() {
-    await mongoose.connect(mongoUrl);
+    await mongoose.connect(dbUrl);
 }
 
 app.use(express.urlencoded({ extended: true }));

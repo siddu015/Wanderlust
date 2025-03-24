@@ -1,38 +1,187 @@
+/* flash.css */
+.alert-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    z-index: 1000;
+}
+
 .custom-alert {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 20px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #2e6018, rgba(144, 200, 68, 0.68));
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2e6018, rgba(144, 200, 68, 0.9));
     color: white;
-    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
     font-weight: 500;
-    position: relative;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    opacity: 1;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    margin-bottom: 1rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.3s ease-out;
+    width: 100%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.error-alert {
+    background: linear-gradient(135deg, #7a1d1d, rgba(200, 68, 68, 0.9));
 }
 
 .custom-alert .message {
     flex: 1;
+    padding-right: 1rem;
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .custom-alert .close-btn {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.2);
     border: none;
-    font-size: 1.5rem;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 1.2rem;
     cursor: pointer;
     color: white;
-    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease; /* Only background transition */
+    flex-shrink: 0;
 }
 
 .custom-alert .close-btn:hover {
-    transform: scale(1.2);
+    background: rgba(255, 255, 255, 0.3); /* Simple hover effect, no rotation or scaling */
 }
 
-.error-alert {
-    background: linear-gradient(135deg, #601818, rgba(200, 68, 68, 0.8));
-    color: white;
+.custom-alert::before {
+    content: '✓';
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+    flex-shrink:0;
+}
+
+.error-alert::before {
+    content: '!';
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Tablet screens (up to 768px, e.g., iPad) */
+@media (max-width: 768px) {
+    .alert-container {
+        top: 10px;
+        width: 90%;
+        max-width: 600px;
+    }
+
+    .custom-alert {
+        padding: 0.8rem 1rem;
+        font-size: clamp(0.75rem, 2vw, 0.9rem);
+        max-width: 450px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .custom-alert .message {
+        padding-right: 0.75rem;
+    }
+
+    .custom-alert .close-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 1rem;
+    }
+
+    .custom-alert::before {
+        margin-right: 0.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Mobile screens (up to 480px) */
+@media (max-width: 480px) {
+    .alert-container {
+        top: 8px;
+        width: 98%;
+        max-width: none;
+    }
+
+    .custom-alert {
+        padding: 0.6rem 0.8rem;
+        font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+        max-width: none;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .custom-alert .message {
+        padding-right: 0.5rem;
+    }
+
+    .custom-alert .close-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 0.9rem;
+    }
+
+    .custom-alert::before {
+        margin-right: 0.4rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Very small mobile screens (up to 360px) */
+@media (max-width: 360px) {
+    .alert-container {
+        top: 6px;
+        width: 99%;
+        max-width: none;
+    }
+
+    .custom-alert {
+        padding: 0.5rem 0.6rem;
+        font-size: clamp(0.6rem, 1.6vw, 0.75rem);
+        max-width: none;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .custom-alert .message {
+        padding-right: 0.4rem;
+    }
+
+    .custom-alert .close-btn {
+        width: 18px;
+        height: 18px;
+        font-size: 0.8rem;
+    }
+
+    .custom-alert::before {
+        margin-right: 0.3rem;
+        font-size: 0.8rem;
+    }
 }

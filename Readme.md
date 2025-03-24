@@ -5,8 +5,6 @@ Wanderlust is a platform where users can rent out their locations. Users can log
 **Check Out live**: [**Wanderlust**](https://wandelast.onrender.com/)
 
 
----
-
 ## Features
 
 - **User Authentication**:
